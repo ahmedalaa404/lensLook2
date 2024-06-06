@@ -1,4 +1,5 @@
-﻿using lensLook.Dal.Models;
+﻿using lensLook.Dal.models;
+using lensLook.Dal.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,5 +17,8 @@ namespace lensLook.Dal.Context
             base.OnModelCreating(modelbuilder);
 
         }
+
+
+        public DbSet<Product> Products { get; set; }
     }
 }

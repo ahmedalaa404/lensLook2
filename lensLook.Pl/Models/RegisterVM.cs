@@ -15,7 +15,7 @@ namespace lensLook.Pl.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; }
+        //public string Gender { get; set; }
         [Required(ErrorMessage = "Password Is Rquired")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -26,7 +26,7 @@ namespace lensLook.Pl.Models
         public bool IsActive { get; set; }
 
         [Phone]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
 
 

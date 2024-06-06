@@ -14,8 +14,8 @@ namespace lensLook.Pl
             {
                 user model = new user()
                 {
-                    Fname = "Ahmed",
-                    Lname="Alaa",
+                    FirstName = "Ahmed",
+                    LastName="Alaa",
                     Email = "test@mail.com",
                     UserName = "HambozoCom",
                     DisplayName="Hambozo11"

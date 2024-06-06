@@ -67,11 +67,12 @@ namespace lensLook.Pl.Controllers
             {
                 var User = new user()
                 {
-                    Fname = Model.FirstName,
-                    Lname = Model.LastName,
+                    FirstName = Model.FirstName,
+                    LastName = Model.LastName,
                     UserName = Model.Email.Split("@")[0],
-                    Email = Model.Email,
-                    IsAgree = Model.IsActive,
+                    Email = Model.Email.Trim().ToLower(),
+                    IsActive = Model.IsActive,
+                    DisplayName=Model.FirstName + Model.LastName,
                     PhoneNumber = string.Concat("+2", Model.PhoneNumber)
 
                 };
@@ -112,7 +113,7 @@ namespace lensLook.Pl.Controllers
         {
             if (ModelState.IsValid)
             {
-                var User = await _usermanager.FindByEmailAsync(UserLogin.Email);
+                var User = await _usermanager.FindByEmailAsync(UserLogin.Email.Trim().ToLower());
                 if (User is not null)
                 {
                     var flag = await _usermanager.CheckPasswordAsync(User, UserLogin.Password);
@@ -180,7 +181,7 @@ namespace lensLook.Pl.Controllers
                     };
                     //_mailmanager.SendMail(email);
                     _Mailmanager.SendEmail(email);
-                    return RedirectToAction(nameof(CheckBox));
+                    return RedirectToAction(nameof(checkyourinbox));
                 }
                 else
                 {
@@ -247,7 +248,7 @@ namespace lensLook.Pl.Controllers
 
 
 
-        public IActionResult CheckBox()
+        public IActionResult checkyourinbox()
         {
             return View();
         }
