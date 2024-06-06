@@ -30,6 +30,36 @@ namespace lensLook.Pl.Controllers
         }
 
 
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterOrLogin(ModelLoginAndRegister Model)
+        {
+            if(ModelState.IsValid)
+            {
+                if (Model.ModelLogin != null)
+                {
+                   await Login(Model.ModelLogin);
+                }
+                else
+                {
+                    await Register(Model.ModelRegister);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM Model)
         {
@@ -66,7 +96,12 @@ namespace lensLook.Pl.Controllers
 
 
 
+        //[HttpGet]
+        //public IActionResult Login()
+        //{
 
+        //    return View();
+        //}
 
         #region Login
 

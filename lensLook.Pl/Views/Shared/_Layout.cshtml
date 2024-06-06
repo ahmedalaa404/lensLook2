@@ -1,4 +1,4 @@
-﻿
+﻿@model ModelLoginAndRegister
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,13 +95,18 @@
                         </ul>
                     </li>
                 </ul>
-                <button class="btn main-btn"
-                        id="show-login"
-                        data-bs-toggle="modal"
-                @* asp-controller="AccountController" asp-action="Login" *@
-                        data-bs-target="#loginPopup">
+
+
+                <a class="btn main-btn"
+                   id="show-login"
+                   data-bs-toggle="modal"
+                   asp-action="login" asp-controller="account"
+                   data-bs-target="#loginPopup">
                     Login
-                </button>
+                </a>
+
+
+
                 <button class="btn main-btn"
                         data-bs-toggle="modal"
                         data-bs-target="#registrationPopup">
@@ -111,6 +116,104 @@
         </div>
     </nav>
     @RenderBody()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade"
+         id="loginPopup"
+         tabindex="-1"
+         aria-labelledby="loginPopupLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="loginPopupLabel">Login</h3>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
+                        <div class="mb-3">
+                            <label asp-for="ModelLogin.Email" class="form-label fw-bold">Email</label>
+                            <input asp-for="ModelLogin.Email" class="form-control" placeholder="Enter your Email" required />
+                            <span asp-validation-for="ModelLogin.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ModelLogin.Password" class="form-label fw-bold">Password</label>
+                            <input asp-for="ModelLogin.Password" class="form-control" placeholder="Enter your password" required />
+                            <span asp-validation-for="ModelLogin.Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input asp-for="ModelLogin.RememberMe" class="form-check-input" />
+                            <label asp-for="ModelLogin.RememberMe" class="form-check-label">Remember Me</label>
+                        </div>
+                        <button type="submit" class="btn main-btn ms-0 mb-3">Login</button>
+                        <a asp-action="ForgetPassword"
+                           id="forgotPasswordLink"
+                           data-bs-toggle="modal"
+                           data-bs-target="#forgotPasswordPopup">Forgot Password?</a>
+                        <hr />
+                        <p class="text-center fw-bold">OR</p>
+                        <hr />
+                        <div class="text-center log-option mb-3">
+                            <a href="#" class="btn main-btn btn-sm me-2 ms-0">
+                                <i class="fab fa-facebook-f me-3"></i> Login with Facebook
+                            </a>
+                            <a href="#" class="btn btn-light btn-sm main-btn ms-0">
+                                <i class="fab fa-google me-3"></i> Login with Google
+                            </a>
+                        </div>
+                    </form>
+                    <p>Don't have an account? <a asp-action="Register">Sign Up</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <footer class="footer">
         <div class="">
