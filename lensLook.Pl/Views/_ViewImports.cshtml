@@ -1,5 +1,8 @@
-﻿@using lensLook.Pl
+﻿@using Microsoft.AspNetCore.Identity
+@using lensLook.Dal.Models
+@using lensLook.Pl
 @using lensLook.Pl.Models
 @using lensLook.PL.ViewModel
+@inject UserManager<user> _Usermanager;
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

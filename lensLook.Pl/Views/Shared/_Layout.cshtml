@@ -39,6 +39,14 @@
     <link href="~/font-awesome/css/v5-font-face.css" rel="stylesheet" />
 
     @RenderSection("cssLinker",false)
+
+
+    <style>
+        .fa-right-from-bracket:hover {
+            color:red !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -64,7 +72,7 @@
                            asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="index" id="AboutUs">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Service">Services</a>
@@ -98,25 +106,45 @@
                     </li>
                 </ul>
 
+                @{
 
-                <a class="btn main-btn"
-                   id="show-login"
-                   data-bs-toggle="modal"
-                   asp-action="login" asp-controller="account"
-                   data-bs-target="#loginPopup">
-                    Login
-                </a>
+                    if(!User.Identity.IsAuthenticated)
+                    {
+                
+                            <a class="btn main-btn"
+                               id="show-login"
+                               data-bs-toggle="modal"
+                               data-bs-target="#loginPopup"
+                            @* asp-action="login" asp-controller="account" *@>
+                                Login
+                            </a>
 
 
 
-                <button class="btn main-btn"
-                        data-bs-toggle="modal"
-                        data-bs-target="#registrationPopup">
-                    Sign Up
-                </button>
+                            <button class="btn main-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registrationPopup">
+                                Sign Up
+                        </button>
+                    }
+
+                    else
+                    {
+                        <a class="btn" asp-action="SignOut" asp-controller="account">
+                        @User.Identity.Name
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    }
+                }
+                
+
             </div>
         </div>
     </nav>
+
+
+
+
     @RenderBody()
 
 
@@ -124,151 +152,156 @@
 
 
 
+    @{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="modal fade"
-         id="loginPopup"
-         tabindex="-1"
-         aria-labelledby="loginPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="loginPopupLabel">Login</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
-                        <div class="mb-3">
-                            <label asp-for="ModelLogin.Email" class="form-label fw-bold">Email</label>
-                            <input asp-for="ModelLogin.Email" class="form-control" placeholder="Enter your Email" required />
-                            <span asp-validation-for="ModelLogin.Email" class="text-danger"></span>
+        if ((!User.Identity.IsAuthenticated))
+        {
+            <div class="modal fade"
+                 id="loginPopup"
+                 tabindex="-1"
+                 aria-labelledby="loginPopupLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="loginPopupLabel">Login</h3>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelLogin.Password" class="form-label fw-bold">Password</label>
-                            <input asp-for="ModelLogin.Password" class="form-control" placeholder="Enter your password" required />
-                            <span asp-validation-for="ModelLogin.Password" class="text-danger"></span>
+                        <div class="modal-body">
+                            <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
+                                <div class="mb-3">
+                                    <label asp-for="ModelLogin.Email" class="form-label fw-bold">Email</label>
+                                    <input asp-for="ModelLogin.Email" class="form-control" placeholder="Enter your Email" required />
+                                    <span asp-validation-for="ModelLogin.Email" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelLogin.Password" class="form-label fw-bold">Password</label>
+                                    <input asp-for="ModelLogin.Password" class="form-control" placeholder="Enter your password" required />
+                                    <span asp-validation-for="ModelLogin.Password" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input asp-for="ModelLogin.RememberMe" class="form-check-input" />
+                                    <label asp-for="ModelLogin.RememberMe" class="form-check-label">Remember Me</label>
+                                </div>
+                                <button type="submit" class="btn main-btn ms-0 mb-3">Login</button>
+                                <a asp-action="ForgetPassword" asp-controller="account" class="btn btn-danger">Forgot Password?</a>
+                                <hr />
+
+
+                            </form>
+                            <p>Don't have an account? <a asp-action="Register">Sign Up</a></p>
+
                         </div>
-                        <div class="mb-3 form-check">
-                            <input asp-for="ModelLogin.RememberMe" class="form-check-input" />
-                            <label asp-for="ModelLogin.RememberMe" class="form-check-label">Remember Me</label>
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">Login</button>
-                        <a asp-action="ForgetPassword" asp-controller="account" class="btn btn-danger">Forgot Password?</a>
-                        <hr />
-
-
-                    </form>
-                    <p>Don't have an account? <a asp-action="Register">Sign Up</a></p>
-
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="modal fade"
-         id="registrationPopup"
-         tabindex="-1"
-         aria-labelledby="registrationPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="registrationPopupLabel">Sign Up</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.FirstName" class="form-label fw-bold">First Name</label>
-                            <input asp-for="ModelRegister.FirstName" class="form-control" placeholder="Enter your first name" required />
-                            <span asp-validation-for="ModelRegister.FirstName" class="text-danger"></span>
+            <div class="modal fade"
+                 id="registrationPopup"
+                 tabindex="-1"
+                 aria-labelledby="registrationPopupLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="registrationPopupLabel">Sign Up</h3>
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.LastName" class="form-label fw-bold">Last Name</label>
-                            <input asp-for="ModelRegister.LastName" class="form-control" placeholder="Enter your last name" required />
-                            <span asp-validation-for="ModelRegister.LastName" class="text-danger"></span>
+                        <div class="modal-body">
+                            <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.FirstName" class="form-label fw-bold">First Name</label>
+                                    <input asp-for="ModelRegister.FirstName" class="form-control" placeholder="Enter your first name" required />
+                                    <span asp-validation-for="ModelRegister.FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.LastName" class="form-label fw-bold">Last Name</label>
+                                    <input asp-for="ModelRegister.LastName" class="form-control" placeholder="Enter your last name" required />
+                                    <span asp-validation-for="ModelRegister.LastName" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.Email" class="form-label fw-bold">Email</label>
+                                    <input asp-for="ModelRegister.Email" class="form-control" placeholder="Enter your email" required />
+                                    <span asp-validation-for="ModelRegister.Email" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.DateOfBirth" class="form-label fw-bold">Date of Birth</label>
+                                    <input asp-for="ModelRegister.DateOfBirth" class="form-control" required />
+                                    <span asp-validation-for="ModelRegister.DateOfBirth" class="text-danger"></span>
+                                </div>
+                                @*                         <div class="mb-3">
+                        <label asp-for="ModelRegister.Gender" class="form-label fw-bold">Gender</label>
+                        <div class="form-check">
+                        <input asp-for="ModelRegister.Gender" class="form-check-input" type="radio" name="Gender" value="Male" />
+                        <label class="form-check-label" for="male">Male</label>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.Email" class="form-label fw-bold">Email</label>
-                            <input asp-for="ModelRegister.Email" class="form-control" placeholder="Enter your email" required />
-                            <span asp-validation-for="ModelRegister.Email" class="text-danger"></span>
+                        <div class="form-check">
+                        <input asp-for="ModelRegister.Gender" class="form-check-input" type="radio" name="Gender" value="Female" />
+                        <label class="form-check-label" for="female">Female</label>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.DateOfBirth" class="form-label fw-bold">Date of Birth</label>
-                            <input asp-for="ModelRegister.DateOfBirth" class="form-control" required />
-                            <span asp-validation-for="ModelRegister.DateOfBirth" class="text-danger"></span>
-                        </div>
-@*                         <div class="mb-3">
-                            <label asp-for="ModelRegister.Gender" class="form-label fw-bold">Gender</label>
-                            <div class="form-check">
-                                <input asp-for="ModelRegister.Gender" class="form-check-input" type="radio" name="Gender" value="Male" />
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check">
-                                <input asp-for="ModelRegister.Gender" class="form-check-input" type="radio" name="Gender" value="Female" />
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <span asp-validation-for="ModelRegister.Gender" class="text-danger"></span>
+                        <span asp-validation-for="ModelRegister.Gender" class="text-danger"></span>
                         </div> *@
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.Password" class="form-label fw-bold">Password</label>
-                            <input asp-for="ModelRegister.Password" class="form-control" placeholder="Enter your password" required />
-                            <span asp-validation-for="ModelRegister.Password" class="text-danger"></span>
-                            <div class="form-text">Password must be at least 8 characters long, including a combination of uppercase and lowercase letters, numbers, and symbols.</div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.Password" class="form-label fw-bold">Password</label>
+                                    <input asp-for="ModelRegister.Password" class="form-control" placeholder="Enter your password" required />
+                                    <span asp-validation-for="ModelRegister.Password" class="text-danger"></span>
+                                    <div class="form-text">Password must be at least 8 characters long, including a combination of uppercase and lowercase letters, numbers, and symbols.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="ModelRegister.ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
+                                    <input asp-for="ModelRegister.ConfirmPassword" class="form-control" placeholder="Confirm your password" required />
+                                    <span asp-validation-for="ModelRegister.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input asp-for="ModelRegister.IsActive" class="form-check-input" required />
+                                    <label asp-for="ModelRegister.IsActive" class="form-check-label">I agree to the Terms and Conditions</label>
+                                    <a href="#">(link to Terms and Conditions)</a>
+                                </div>
+                                <button type="submit" class="btn main-btn ms-0 mb-3" id="show-login"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#loginPopup">
+                                    Sign Up
+                                </button>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
-                            <input asp-for="ModelRegister.ConfirmPassword" class="form-control" placeholder="Confirm your password" required />
-                            <span asp-validation-for="ModelRegister.ConfirmPassword" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input asp-for="ModelRegister.IsActive" class="form-check-input" required />
-                            <label asp-for="ModelRegister.IsActive" class="form-check-label">I agree to the Terms and Conditions</label>
-                            <a href="#">(link to Terms and Conditions)</a>
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">Sign Up</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+
+
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -316,10 +349,10 @@
                     <hr />
                     <ul style="list-style: none">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                        <li><a asp-controller="Home" asp-action="index">About Us</a></li>
                         <li><a asp-controller="Service" asp-action="Service">Services</a></li>
-                        <li><a href="store.html">Store</a></li>
-                        <li><a href="appointment.html">Appointment</a></li>
+@*                         <li><a href="store.html">Store</a></li>
+                        <li><a href="appointment.html">Appointment</a></li> *@
                     </ul>
                 </div>
                 <div class="col text-center column-gap-2">
