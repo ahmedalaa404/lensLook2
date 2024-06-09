@@ -1,4 +1,15 @@
-﻿@model ModelLoginAndRegister
+﻿@using System.Security.Claims
+@using lensLook.Dal
+@model ModelLoginAndRegister
+@{
+
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+}
+
+
+@inject IBasketRepo BasketRepo;
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +89,7 @@
                         <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Service">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3" href="store.html">Store</a>
+                        <a class="nav-link p-2 p-lg-3" asp-action="store" asp-controller="Home">Store</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link p-2 p-lg-3" href="appointment.html">Appointment</a>
@@ -134,6 +145,10 @@
                         @User.Identity.Name
                         <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
+
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h4>@BasketRepo.GetCountBasketItems(userId)</h4>
                     }
                 }
                 

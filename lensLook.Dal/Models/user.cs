@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lensLook.Dal.Models
 {
@@ -16,6 +17,14 @@ namespace lensLook.Dal.Models
 
 
         public bool IsActive { get; set; }
+
+
+
+
+ 
+
+
+        public BasketCustomer BasketCustomers { get; set; }
 
     }
 }

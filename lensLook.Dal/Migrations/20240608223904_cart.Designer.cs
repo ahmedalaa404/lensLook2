@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lensLook.Dal.Context;
 
@@ -11,9 +12,11 @@ using lensLook.Dal.Context;
 namespace lensLook.Dal.Migrations
 {
     [DbContext(typeof(LensLookDbContext))]
-    partial class LensLookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240608223904_cart")]
+    partial class cart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,8 +172,7 @@ namespace lensLook.Dal.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("BasketCustomers");
                 });
@@ -194,9 +196,6 @@ namespace lensLook.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Productid")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -206,8 +205,6 @@ namespace lensLook.Dal.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BasketCustomerId");
-
-                    b.HasIndex("Productid");
 
                     b.ToTable("BasketItems");
                 });
@@ -400,8 +397,8 @@ namespace lensLook.Dal.Migrations
             modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
                 {
                     b.HasOne("lensLook.Dal.Models.user", "user")
-                        .WithOne("BasketCustomers")
-                        .HasForeignKey("lensLook.Dal.Models.BasketCustomer", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -413,25 +410,11 @@ namespace lensLook.Dal.Migrations
                     b.HasOne("lensLook.Dal.Models.BasketCustomer", null)
                         .WithMany("BasketItems")
                         .HasForeignKey("BasketCustomerId");
-
-                    b.HasOne("lensLook.Dal.models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("Productid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
                 {
                     b.Navigation("BasketItems");
-                });
-
-            modelBuilder.Entity("lensLook.Dal.Models.user", b =>
-                {
-                    b.Navigation("BasketCustomers")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

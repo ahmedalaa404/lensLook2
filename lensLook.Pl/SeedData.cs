@@ -18,7 +18,11 @@ namespace lensLook.Pl
                     LastName="Alaa",
                     Email = "test@mail.com",
                     UserName = "HambozoCom",
-                    DisplayName="Hambozo11"
+                    DisplayName="Hambozo11",
+                    BasketCustomers=new BasketCustomer()
+                    {
+                        
+                    }
                 };
              var resulte=  await _userManager.CreateAsync(model, "Hambozo123@@##");
 

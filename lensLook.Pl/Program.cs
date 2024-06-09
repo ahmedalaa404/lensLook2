@@ -5,6 +5,9 @@ using lensLook.Pl.Helper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using lensLook.Bll;
+using lensLook.Dal;
+using lensLook.Bll.Services;
 
 namespace lensLook.Pl
 {
@@ -17,7 +20,7 @@ namespace lensLook.Pl
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 
             builder.Services.AddDbContext<LensLookDbContext>(options =>
@@ -26,13 +29,19 @@ namespace lensLook.Pl
             });
             //builder.Services.AddScoped<IDepartmentsRepo, DepartmentsRepo>();
 
+            builder.Services.AddScoped<IProductRepo,ProductRepo>();
+
+
+
+
+
 
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSetting"));
 
             builder.Services.AddTransient<IEmailSettings, EmailSettings>();
 
 
-
+            builder.Services.AddScoped<IBasketRepo, BasketRepo>();
 
 
 

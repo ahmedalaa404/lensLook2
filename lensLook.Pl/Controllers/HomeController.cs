@@ -1,3 +1,5 @@
+using lensLook.Dal;
+using lensLook.Dal.models;
 using lensLook.Pl.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,10 +9,12 @@ namespace lensLook.Pl.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepo _ProductRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger ,IProductRepo ProductRepo)
         {
             _logger = logger;
+            _ProductRepo = ProductRepo;
         }
 
         public IActionResult Index()
@@ -49,6 +53,12 @@ namespace lensLook.Pl.Controllers
             return View();
         }
 
+        public IActionResult store ()
+        {
+            ViewBag.AllProducts = _ProductRepo.GetAllProduct() as IEnumerable<Product>;
+
+            return View();
+        }
 
 
 

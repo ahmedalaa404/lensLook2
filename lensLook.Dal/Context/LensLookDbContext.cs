@@ -14,11 +14,19 @@ namespace lensLook.Dal.Context
         }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
+
             base.OnModelCreating(modelbuilder);
 
+
+            modelbuilder.Entity<user>()
+                .HasOne(x => x.BasketCustomers)
+                .WithOne(x => x.user);
         }
 
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<BasketCustomer> BasketCustomers { get; set; }
+        public DbSet<BasketItems> BasketItems { get; set; }
+
     }
 }
