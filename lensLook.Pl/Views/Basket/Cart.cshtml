@@ -36,9 +36,9 @@
                                     <p><strong>@item.Name</strong></p>
                                     <p>Color: blue</p>
                                     <p>Size: M</p>
-                                    <a asp-action="RemoveProductFromBasket" asp-controller="Basket" asp-route-Id="@item.Productid"  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm me-1 mb-2" data-mdb-tooltip-init
+                                    <a asp-action="RemoveProductFromBasket" asp-controller="Basket" asp-route-Id="@item.Productid" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger  btn-sm me-1 mb-2" data-mdb-tooltip-init
                                             title="Remove item">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-trash "></i>
                                     </a>
 
                                     <!-- Data -->
@@ -47,14 +47,14 @@
                                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                     <!-- Quantity -->
                                     <div class="d-flex mb-4" style="max-width: 300px">
-                                        <a asp-action="LessProductFromBasket" asp-controller="Basket" asp-route-Id="@item.Productid" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary px-3 me-2"
+                                        <a asp-action="LessProductFromBasket" asp-controller="Basket" asp-route-Id="@item.Productid" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger px-3 me-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="fas fa-minus"></i>
                                         </a>
 
                                         <div data-mdb-input-init class="form-outline">
-                                            <input id="form1" min="0" name="quantity" value="@item.Quantity" type="number" class="form-control" disabled />
-                                            <label class="form-label" for="form1">Quantity</label>
+                                            <input id="form1" min="0" name="quantity"  value="@item.Quantity" type="number" class="text-center form-control" disabled />
+                                            @* <label class="form-label" for="form1">Quantity</label> *@
                                         </div>
 
                                         <a asp-action="IncrementProductFromBasket" asp-controller="Basket" asp-route-Id="@item.Productid" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary px-3 ms-2"
