@@ -1,63 +1,80 @@
-﻿@model LoginVM
+﻿@model ModelLoginAndRegister
 @{
     ViewData["Title"] = "Login";
 }
 @{
     Layout = "_Layout";
 }
+@* 
+@section cssLinker{
+    <style>
 
 
-<div class="modal fade"
-     id="loginPopup"
-     tabindex="-1"
-     aria-labelledby="loginPopupLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="loginPopupLabel">Login</h3>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form asp-action="Login" method="post">
-                    <div class="mb-3">
-                        <label asp-for="Email" class="form-label fw-bold">Email</label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter your Email" required />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label asp-for="Password" class="form-label fw-bold">Password</label>
-                        <input asp-for="Password" class="form-control" placeholder="Enter your password" required />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input asp-for="RememberMe" class="form-check-input" />
-                        <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
-                    </div>
-                    <button type="submit" class="btn main-btn ms-0 mb-3">Login</button>
-                    <a asp-action="ForgetPassword"
-                       id="forgotPasswordLink"
-                       data-bs-toggle="modal"
-                       data-bs-target="#forgotPasswordPopup">Forgot Password?</a>
-                    <hr />
-                    <p class="text-center fw-bold">OR</p>
-                    <hr />
-                    <div class="text-center log-option mb-3">
-                        <a href="#" class="btn main-btn btn-sm me-2 ms-0">
-                            <i class="fab fa-facebook-f me-3"></i> Login with Facebook
-                        </a>
-                        <a href="#" class="btn btn-light btn-sm main-btn ms-0">
-                            <i class="fab fa-google me-3"></i> Login with Google
-                        </a>
-                    </div>
-                </form>
-                <p>Don't have an account? <a asp-action="Register">Sign Up</a></p>
-               
-            </div>
-        </div>
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease-in-out;
+            outline: none;
+            color: #333;
+        }
+
+            input:focus {
+                border-color: #555;
+            }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            button:hover {
+                background-color: #2980b9;
+            }
+
+    </style>
+}
+
+
+
+
+
+
+<div class="container">
+    <div class="card">
+        <h2>Login</h2>
+        <form>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
     </div>
-</div>
-
+</div> *@

@@ -21,32 +21,41 @@ namespace lensLook.Bll.Services
 
         public int GetCountBasketItems(string IdUser)
         {
-           var BasketItem =_context.BasketCustomers.Include(x => x.BasketItems).Where(x => x.UserId == IdUser).FirstOrDefault();
+            var BasketItem = _context.BasketCustomers.Include(x => x.BasketItems).Where(x => x.UserId == IdUser).FirstOrDefault();
 
-            return 12;
+            return BasketItem.BasketItems.Count();
         }
 
         public BasketCustomer GetCustomerBasket(string IdUser)
         {
 
-            return _context.BasketCustomers.Include(x=>x.BasketItems).FirstOrDefault(x => x.UserId == IdUser);
-           
+            return _context.BasketCustomers.Include(x => x.BasketItems).FirstOrDefault(x => x.UserId == IdUser);
+
         }
+        public BasketCustomer GetCustomerBasketWithProduct(string IdUser)
+        {
+
+            return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == IdUser);
+
+        }
+
+
 
         public bool UpdateBasket(BasketCustomer NewBasket)
         {
             try
             {
                 _context.BasketCustomers.Update(NewBasket);
+                _context.BasketItems.Where(x => x.CustomerBasketId == null && x.Productid == NewBasket.Id);
                 _context.SaveChanges();
-                return  true;
+                return true;
             }
             catch (Exception)
             {
                 return false;
                 throw;
             }
-    
+
         }
         //public bool DeleteBasket(BasketCustomer customer)
         //{

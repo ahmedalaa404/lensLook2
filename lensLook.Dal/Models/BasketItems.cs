@@ -19,5 +19,8 @@ namespace lensLook.Dal.Models
         public int Productid { get; set; }
         public Product Product { get; set; }
 
+        public int CustomerBasketId { get; set; }
+        public BasketCustomer BasketCustomer { get; set; }
+
     }
 }

@@ -18,6 +18,8 @@ namespace lensLook.Dal.Models
         public user user { get; set; }
 
 
+
+
         public BasketCustomer(int id)
         {
             Id = id;
@@ -28,7 +30,8 @@ namespace lensLook.Dal.Models
 
         }
 
-        public Collection<BasketItems>? BasketItems { get; set; }
+        public List<BasketItems>? BasketItems { get; set; } = new List<BasketItems>();
+        public decimal TotalPrice =>BasketItems.Sum(x=>x.Quantity*x.price);
 
 
 
@@ -37,7 +40,7 @@ namespace lensLook.Dal.Models
 
 
 
-  
+
 
 
 

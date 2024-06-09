@@ -1,12 +1,7 @@
 ﻿@using System.Security.Claims
 @using lensLook.Dal
 @model ModelLoginAndRegister
-@{
 
-    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-
-}
 
 
 @inject IBasketRepo BasketRepo;
@@ -14,6 +9,14 @@
 <html lang="en">
 
 <head>
+
+
+    <style>
+        footer{
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lens Look</title>
@@ -49,12 +52,12 @@
     <link href="~/font-awesome/css/v5-font-face.min.css" rel="stylesheet" />
     <link href="~/font-awesome/css/v5-font-face.css" rel="stylesheet" />
 
-    @RenderSection("cssLinker",false)
+    @RenderSection("cssLinker", false)
 
 
     <style>
         .fa-right-from-bracket:hover {
-            color:red !important;
+            color: red !important;
         }
     </style>
 
@@ -119,39 +122,53 @@
 
                 @{
 
-                    if(!User.Identity.IsAuthenticated)
+                    if (!User.Identity.IsAuthenticated)
                     {
-                
-                            <a class="btn main-btn"
-                               id="show-login"
-                               data-bs-toggle="modal"
-                               data-bs-target="#loginPopup"
-                            @* asp-action="login" asp-controller="account" *@>
-                                Login
-                            </a>
+
+                        <a class="btn main-btn"
+                           id="show-login"
+                           data-bs-toggle="modal"
+                           data-bs-target="#loginPopup"
+                        @* asp-action="login" asp-controller="account" *@>
+                            Login
+                        </a>
 
 
 
-                            <button class="btn main-btn"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#registrationPopup">
-                                Sign Up
+                        <button class="btn main-btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#registrationPopup">
+                            Sign Up
                         </button>
                     }
 
                     else
                     {
                         <a class="btn" asp-action="SignOut" asp-controller="account">
-                        @User.Identity.Name
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                            @User.Identity.Name
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
 
 
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <h4>@BasketRepo.GetCountBasketItems(userId)</h4>
+                        <a asp-action="Cart" asp-controller="Basket">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+
                     }
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        <h4>@BasketRepo.GetCountBasketItems(userId)</h4>
+
+                    }
+
+
+
                 }
+
                 
+
 
             </div>
         </div>
@@ -322,7 +339,6 @@
 
 
 
-    
 
 
 
@@ -341,7 +357,8 @@
 
 
 
-    <footer class="footer">
+
+    <footer class="footer" >
         <div class="">
             <div class="row">
                 <div class="col ms-5">
@@ -366,7 +383,7 @@
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="index">About Us</a></li>
                         <li><a asp-controller="Service" asp-action="Service">Services</a></li>
-@*                         <li><a href="store.html">Store</a></li>
+                        @*                         <li><a href="store.html">Store</a></li>
                         <li><a href="appointment.html">Appointment</a></li> *@
                     </ul>
                 </div>
@@ -404,7 +421,7 @@
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/all.min.js"></script>
     @* pages *@
-@*     <script src="~/js/Home.js"></script>
+    @*     <script src="~/js/Home.js"></script>
     <script src="~/js/AboutUs.js"></script>
     <script src="~/js/FAQ.js"></script> *@
 
@@ -424,6 +441,6 @@
     <script src="~/font-awesome/js/v4-shims.min.js"></script>
     <script src="~/font-awesome/js/v4-shims.js"></script>
 
-     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

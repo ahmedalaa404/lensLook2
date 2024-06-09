@@ -1,4 +1,5 @@
 ﻿using lensLook.Dal;
+using lensLook.Dal.models;
 using lensLook.Dal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -60,57 +61,114 @@ namespace lensLook.Pl.Controllers
         }
 
 
+        [Authorize]
+        public IActionResult Cart()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
 
-
-        //[HttpGet]
-        //public async Task<IActionResult> GetCustomerBasket(int Id)
-        //{
-        //    var Basket = await _basketRepo.GetBasketCustomer(Id);
-        //    if (Basket is null)
-        //    {
-        //        return View(Basket);
-        //    }
-        //    else
-        //    {
-        //        var BasketNewTheSameOldBaasketWithoutData=new BasketCustomer(Id);
-
-        //        return View(Basket);
-        //    }
-
-
-        //}
+            var OldBasket = _basketRepo.GetCustomerBasketWithProduct(userId);
+            return View(OldBasket);
+        }
 
 
 
+        [Authorize]
+        public IActionResult IncrementProductFromBasket(int Id  /* ProductId*/  )
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var OldBasket = _basketRepo.GetCustomerBasket(userId);
+
+            var x = OldBasket.BasketItems.Where(x => x.Productid == Id).FirstOrDefault();
+            if (x != null)
+            {
+                x.Quantity++;
+            }
 
 
-        //[HttpPost]
+            var StateUpdateOrDelete = _basketRepo.UpdateBasket(OldBasket);
 
-        //public async Task<IActionResult> UpdateBasket(BasketCustomer basket)
-        //{
-        //    //var Basket = await _basketRepo.GetBasketCustomer(Id);
+            return RedirectToAction("Cart", "Basket");
 
-        //    var CreateorUpdate = await _basketRepo.UpdateBasket(basket);
-        //    if (CreateorUpdate is null)
-        //    {
-        //        return RedirectToAction("index", "Home");
-        //    }
 
-        //    return View(CreateorUpdate);
-
-        //}
+        }       
+        
 
 
 
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> Delete(int BasketId)
-        //{
-        //    var basket =await _basketRepo.GetBasketCustomer(BasketId);
-        //          _basketRepo.DeleteBasket(basket);
-        //    return RedirectToAction("index", "Home");
+        public IActionResult LessProductFromBasket(int Id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
 
-        //}
+            var OldBasket = _basketRepo.GetCustomerBasket(userId);
+
+            var x = OldBasket.BasketItems.Where(x => x.Productid == Id).FirstOrDefault();
+            if (x != null)
+            {
+                if(x.Quantity>2)
+                x.Quantity--;
+                else
+                {
+                    OldBasket.BasketItems.Remove(x);
+                }
+            }
+
+
+            var StateUpdateOrDelete = _basketRepo.UpdateBasket(OldBasket);
+
+            return RedirectToAction("Cart", "Basket");
+        }
+
+
+
+        public IActionResult RemoveProductFromBasket(int Id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var OldBasket = _basketRepo.GetCustomerBasket(userId);
+
+            var x = OldBasket.BasketItems.Where(x => x.Productid == Id).FirstOrDefault();
+
+            OldBasket.BasketItems.Remove(x);
+
+            var StateUpdateOrDelete = _basketRepo.UpdateBasket(OldBasket);
+
+            return RedirectToAction("Cart", "Basket");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

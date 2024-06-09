@@ -1,6 +1,17 @@
 ﻿
 <!DOCTYPE html>
 <html lang="en">
+@{
+
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+}
+
+
+@inject IBasketRepo BasketRepo;
+
+
 
 <head>
     <meta charset="UTF-8" />
@@ -114,6 +125,13 @@
                             @User.Identity.Name
                             <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
+
+
+                        <a asp-action="Cart" asp-controller="Basket">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <h4>@BasketRepo.GetCountBasketItems(userId)</h4>
+                    
                     
                 }
 

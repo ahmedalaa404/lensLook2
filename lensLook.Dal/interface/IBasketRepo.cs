@@ -21,6 +21,7 @@ namespace lensLook.Dal
 
 
         public BasketCustomer GetCustomerBasket(string IdUser);
+        public BasketCustomer GetCustomerBasketWithProduct(string IdUser);
         public bool UpdateBasket(BasketCustomer NewBasket);
 
         public int GetCountBasketItems(string IdUser);

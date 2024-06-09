@@ -21,13 +21,7 @@ namespace lensLook.Pl.Controllers
             _Mailmanager = mailmanager;
         }
 
-        #region Register
-        [HttpGet]
-        public IActionResult Register()
-        {
 
-            return View();
-        }
 
 
 
@@ -93,16 +87,22 @@ namespace lensLook.Pl.Controllers
 
             return View(Model);
         }
-        #endregion
+      
 
 
 
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
+        [HttpGet]
+        public IActionResult Login()
+        {
 
-        //    return View();
-        //}
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+
+            return View();
+        }
 
         #region Login
 
