@@ -117,10 +117,11 @@
                     </li>
                 </ul>
 
-                @{
+                    @{
 
 
 
+                       <div class="align-items-center d-flex">
                         <a class="btn" asp-action="SignOut" asp-controller="account">
                             @User.Identity.Name
                             <i class="fa-solid fa-right-from-bracket"></i>
@@ -128,13 +129,32 @@
 
 
                         <a asp-action="Cart" asp-controller="Basket">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                        <h4>@BasketRepo.GetCountBasketItems(userId)</h4>
-                    
-                    
-                }
 
+
+
+                            <div class="d-flex">
+
+                                <i class="fa-solid fa-cart-shopping">
+
+                                </i>
+
+
+                                <p>
+                                    @BasketRepo.GetCountBasketItems(userId)
+                                </p>
+                            </div>
+
+
+
+
+                        </a>
+                       </div>
+
+
+
+                    }
+
+  
 
             </div>
         </div>
