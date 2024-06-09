@@ -1,7 +1,16 @@
 ﻿
 @{
     ViewData["Title"] = "service";
+    if (User.Identity.IsAuthenticated)
+    {
 
+        Layout = "_LayoutWithAuth";
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
     Layout = "_Layout";
 
 

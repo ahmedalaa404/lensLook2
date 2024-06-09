@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Service">Services</a>
+                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link p-2 p-lg-3 d-flex" asp-action="store" asp-controller="Home">Store</a>
@@ -100,20 +100,24 @@
                 <div class="d-flex justify-context-center">
 
                     <div class="px-3">
-                        <button type="button" class="btn btn-primary position-relative" asp-action="Cart" asp-controller="Basket">
+                        <a type="button" class="btn btn-primary position-relative" asp-action="Cart" asp-controller="Basket">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 <span> @BasketRepo.GetCountBasketItems(userId)</span>
                             </span>
-                        </button>
+                        </a>
                     </div>
 
                     <div>
-                        <a asp-action="SignOut" asp-controller="account" class="btn btn-danger"> logout</a>
+                        <a asp-action="SignOut" asp-controller="account" class="btn btn-danger">
+                            logout
+                            <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+
+                        </a>
                     </div>
 
 
-                </di>
+                    </di>
 
 
 
@@ -123,8 +127,8 @@
 
 
 
+                </div>
             </div>
-        </div>
     </nav>
 
     <!-- Main content wrapped in a content container -->
@@ -172,7 +176,9 @@
                     <ul style="list-style: none">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="index">About Us</a></li>
-                        <li><a asp-controller="Service" asp-action="Service">Services</a></li>
+                        <li>
+                            <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
+                        </li>
                         <li><a href="store.html">Store</a></li>
                         <li><a href="appointment.html">Appointment</a></li>
                     </ul>

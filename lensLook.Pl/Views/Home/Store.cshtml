@@ -2,6 +2,16 @@
 @{
 
     var Products = ViewBag.AllProducts;
+    if (User.Identity.IsAuthenticated)
+    {
+
+        Layout = "_LayoutWithAuth";
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
 }
 
 
@@ -38,10 +48,12 @@
                         <img src="https://i.pinimg.com/564x/dc/0f/ee/dc0fee5cfa137a568e0bb2ff43148250.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="col-lg-4">
-                        <img src="https://i.pinimg.com/564x/a6/88/28/a68828c287251f6cee036656fc4ce4df.jpg" class="d-block w-100" alt="...">
+                        <img src="https://i.pinimg.com/564x/72/a7/01/72a70191770fd205ac335f756dd33728.jpg" class="d-block w-100" alt="...">
+
                     </div>
                     <div class="col-lg-4">
-                        <img src="https://i.pinimg.com/564x/72/a7/01/72a70191770fd205ac335f756dd33728.jpg" class="d-block w-100" alt="...">
+                        <img src="https://i.pinimg.com/564x/a6/88/28/a68828c287251f6cee036656fc4ce4df.jpg" class="d-block w-100" alt="...">
+
                     </div>
                 </div>
                 
@@ -54,13 +66,15 @@
             <div class="carousel-item">
                 <div class="row">
                     <div class="col-lg-4">
-                        <img src="https://i.pinimg.com/564x/dc/0f/ee/dc0fee5cfa137a568e0bb2ff43148250.jpg" class="d-block w-100" alt="...">
+                        <img src="https://i.pinimg.com/564x/72/a7/01/72a70191770fd205ac335f756dd33728.jpg" class="d-block w-100" alt="...">
+
                     </div>
                     <div class="col-lg-4">
                         <img src="https://i.pinimg.com/564x/a6/88/28/a68828c287251f6cee036656fc4ce4df.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="col-lg-4">
-                        <img src="https://i.pinimg.com/564x/72/a7/01/72a70191770fd205ac335f756dd33728.jpg" class="d-block w-100" alt="...">
+                        <img src="https://i.pinimg.com/564x/dc/0f/ee/dc0fee5cfa137a568e0bb2ff43148250.jpg" class="d-block w-100" alt="...">
+
                     </div>
                 </div>
                 

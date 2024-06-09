@@ -1,6 +1,17 @@
 ﻿
 @{
     ViewData["Title"] = "VisionCheck";
+
+    if (User.Identity.IsAuthenticated)
+    {
+
+        Layout = "_LayoutWithAuth";
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
 }
 
 <!DOCTYPE html>

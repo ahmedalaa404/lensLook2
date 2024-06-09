@@ -2,13 +2,22 @@
     ViewData["Title"] = "Index";
 
 
-    <partial name="../PartialView/_CheckIfAuthOrNot.cshtml" />
+    if (User.Identity.IsAuthenticated)
+    {
+
+        Layout = "_LayoutWithAuth";
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
 
 
 
 }
 
-    <div id="imageCarousel" class="carousel slide" data-ride="carousel">
+    <div id="imageCarousel" class="carousel slide overflow-hidden" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="~/photos/home1.jpg" alt="Image 1" />
@@ -23,7 +32,7 @@
             <img src="~/photos/home4.jpg" alt="Image 4" />
             </div>
         </div>
-        <div class="carousel-caption">
+        <div class="carousel-caption start-0">
             <h1 style="font-size: 80px">EYE CARE AT YOUR DOOR</h1>
             <p style="font-size: 20px">Description.</p>
         </div>

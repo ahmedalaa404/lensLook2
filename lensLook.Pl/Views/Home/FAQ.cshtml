@@ -1,5 +1,15 @@
 ﻿
 @{
+    if (User.Identity.IsAuthenticated)
+    {
+
+        Layout = "_LayoutWithAuth";
+    }
+    else
+    {
+        Layout = "_Layout";
+
+    }
     ViewData["Title"] = "FAQ";
 }
 
