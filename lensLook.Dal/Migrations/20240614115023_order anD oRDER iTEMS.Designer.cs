@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lensLook.Dal.Context;
 
@@ -11,9 +12,11 @@ using lensLook.Dal.Context;
 namespace lensLook.Dal.Migrations
 {
     [DbContext(typeof(LensLookDbContext))]
-    partial class LensLookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240614115023_order anD oRDER iTEMS")]
+    partial class orderanDoRDERiTEMS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,48 +218,6 @@ namespace lensLook.Dal.Migrations
                     b.ToTable("BasketItems");
                 });
 
-            modelBuilder.Entity("lensLook.Dal.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BuyerEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DeliveryMethodId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NamePersone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("OrderDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SubTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserIdCreateOrder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("lensLook.Dal.Models.OrderItem", b =>
                 {
                     b.Property<int>("Id")
@@ -265,9 +226,6 @@ namespace lensLook.Dal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -275,8 +233,6 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
                 });
@@ -496,48 +452,9 @@ namespace lensLook.Dal.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("lensLook.Dal.Models.OrderItem", b =>
-                {
-                    b.HasOne("lensLook.Dal.Models.Order", null)
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId");
-
-                    b.OwnsOne("lensLook.Dal.Models.ProductItemOrder", "Product", b1 =>
-                        {
-                            b1.Property<int>("OrderItemId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("ProductId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("ProductName")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("ProductPictureUrl")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("OrderItemId");
-
-                            b1.ToTable("OrderItems");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderItemId");
-                        });
-
-                    b.Navigation("Product")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
                 {
                     b.Navigation("BasketItems");
-                });
-
-            modelBuilder.Entity("lensLook.Dal.Models.Order", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("lensLook.Dal.Models.user", b =>

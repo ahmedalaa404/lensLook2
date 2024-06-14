@@ -21,12 +21,15 @@ namespace lensLook.Dal.Context
             modelbuilder.Entity<user>()
                 .HasOne(x => x.BasketCustomers)
                 .WithOne(x => x.user);
+            modelbuilder.Entity<OrderItem>().OwnsOne(o => o.Product, Product => Product.WithOwner());
         }
 
 
         public DbSet<Product> Products { get; set; }
         public DbSet<BasketCustomer> BasketCustomers { get; set; }
         public DbSet<BasketItems> BasketItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Order> Order { get; set; }
 
     }
 }

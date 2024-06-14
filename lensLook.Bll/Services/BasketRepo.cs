@@ -29,7 +29,7 @@ namespace lensLook.Bll.Services
         public BasketCustomer GetCustomerBasket(string IdUser)
         {
 
-            return _context.BasketCustomers.Include(x => x.BasketItems).FirstOrDefault(x => x.UserId == IdUser);
+            return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x=>x.Product).FirstOrDefault(x => x.UserId == IdUser);
 
         }
         public BasketCustomer GetCustomerBasketWithProduct(string IdUser)
@@ -41,7 +41,19 @@ namespace lensLook.Bll.Services
 
 
 
-        public bool UpdateBasket(BasketCustomer NewBasket)
+
+
+		public BasketCustomer GetCustomerBasketWithProductById(int Customerbasket)
+		{
+
+			return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.Id == Customerbasket);
+
+		}
+
+
+
+
+		public bool UpdateBasket(BasketCustomer NewBasket)
         {
             try
             {
@@ -105,4 +117,5 @@ namespace lensLook.Bll.Services
 
 
     }
+
 }

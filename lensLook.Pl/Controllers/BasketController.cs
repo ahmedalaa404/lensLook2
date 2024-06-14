@@ -22,7 +22,6 @@ namespace lensLook.Pl.Controllers
         }
 
 
-
         [Authorize]
         public async Task<IActionResult> AddToCart(int Product)
         {
@@ -74,8 +73,6 @@ namespace lensLook.Pl.Controllers
             return View(OldBasket);
         }
 
-
-
         [Authorize]
         public IActionResult IncrementProductFromBasket(int Id  /* ProductId*/  )
         {
@@ -100,11 +97,6 @@ namespace lensLook.Pl.Controllers
 
 
         }       
-        
-
-
-
-
 
         public IActionResult LessProductFromBasket(int Id)
         {
@@ -132,8 +124,6 @@ namespace lensLook.Pl.Controllers
 
             return RedirectToAction("Cart", "Basket");
         }
-
-
 
         public IActionResult RemoveProductFromBasket(int Id)
         {

@@ -1,4 +1,6 @@
 ﻿@model BasketCustomer
+
+
 @{
 
 
@@ -6,9 +8,16 @@
 }
 
 <section class="h-100 gradient-custom">
+
+
+
+
     <div class="container py-5">
         <div class="row d-flex justify-content-center my-4">
+
             <div class="col-md-8">
+                <a class="btn btn-success mb-2" asp-action="AllOrderForUser" asp-controller="Order">orders </a>
+
                 <div class="card mb-4">
                     <div class="card-header py-3">
                         <h5 class="mb-0">Cart - @Model.BasketItems.Count() items</h5>
@@ -18,11 +27,13 @@
 
                         @foreach (var item in Model.BasketItems)
                         {
+
+
                             <div class="row">
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                     <!-- Image -->
                                     <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                        <img src="@item.Product.PictureUrl"
+                                        <img src="_ProductRepo"
                                              class="w-100" alt="@item.Name" />
                                         <a href="#!">
                                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
@@ -113,9 +124,12 @@
                             </li>
                         </ul>
 
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
-                            Go to checkout
-                        </button>
+                @if(Model.BasketItems.Count>0)
+                        {
+                            <a asp-controller="Order" asp-action="CreateOrder" asp-route-BasketCustomer="@Model.Id" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
+                                Go to checkout
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

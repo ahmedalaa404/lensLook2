@@ -42,6 +42,7 @@ namespace lensLook.Pl
 
 
             builder.Services.AddScoped<IBasketRepo, BasketRepo>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 

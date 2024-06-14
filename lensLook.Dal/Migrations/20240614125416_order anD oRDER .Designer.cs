@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lensLook.Dal.Context;
 
@@ -11,9 +12,11 @@ using lensLook.Dal.Context;
 namespace lensLook.Dal.Migrations
 {
     [DbContext(typeof(LensLookDbContext))]
-    partial class LensLookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240614125416_order anD oRDER ")]
+    partial class orderanDoRDER
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -501,33 +504,6 @@ namespace lensLook.Dal.Migrations
                     b.HasOne("lensLook.Dal.Models.Order", null)
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
-
-                    b.OwnsOne("lensLook.Dal.Models.ProductItemOrder", "Product", b1 =>
-                        {
-                            b1.Property<int>("OrderItemId")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("ProductId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("ProductName")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("ProductPictureUrl")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("OrderItemId");
-
-                            b1.ToTable("OrderItems");
-
-                            b1.WithOwner()
-                                .HasForeignKey("OrderItemId");
-                        });
-
-                    b.Navigation("Product")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
