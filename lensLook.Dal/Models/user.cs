@@ -18,13 +18,16 @@ namespace lensLook.Dal.Models
 
         public bool IsActive { get; set; }
 
-
-
-
- 
-
-
         public BasketCustomer BasketCustomers { get; set; }
+
+
+
+
+        public ICollection<Booking> UserBooking { get; set; } = new HashSet<Booking>();
+        public ICollection<Booking> DoctorBooking { get; set; } = new HashSet<Booking>();
+        public ICollection<Booking> AdminBooking { get; set; } = new HashSet<Booking>();
+
+
 
     }
 }

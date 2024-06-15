@@ -22,6 +22,44 @@ namespace lensLook.Dal.Context
                 .HasOne(x => x.BasketCustomers)
                 .WithOne(x => x.user);
             modelbuilder.Entity<OrderItem>().OwnsOne(o => o.Product, Product => Product.WithOwner());
+
+
+
+
+            modelbuilder.Entity<user>().HasMany(x => x.UserBooking).WithOne(x=>x.User).HasForeignKey(x=>x.UserId);
+            modelbuilder.Entity<user>().HasMany(x => x.DoctorBooking).WithOne(x => x.Doctor).HasForeignKey(x => x.DoctorId);
+            modelbuilder.Entity<user>().HasMany(x => x.AdminBooking).WithOne(x => x.Admin).HasForeignKey(x => x.AdminId);
+
+
+
+
+            modelbuilder.Entity<Booking>().HasOne(x => x.Services).WithMany(x=>x.Bookings).HasForeignKey(x => x.ServiceId);
+
+            modelbuilder.Entity<Booking>().Property(x => x.AdminStatus)
+                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+
+
+
+
+
+
+            modelbuilder.Entity<Booking>().Property(x => x.DoctorStatus)
+                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+
+
+
+            modelbuilder.Entity<Booking>().Property(x => x.Status)
+                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+
+
+
+
+
+
+
+
+
+
         }
 
 
@@ -30,6 +68,8 @@ namespace lensLook.Dal.Context
         public DbSet<BasketItems> BasketItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<Booking> BookingS { get; set; }
+        public DbSet<Services> Services { get; set; }
 
     }
 }
