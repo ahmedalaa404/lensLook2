@@ -9,7 +9,7 @@ namespace lensLook.Dal
         Task<Order> CreateOrderAsync(Order model);
         List<Order> GetOrdersForUser(string UserId);
 
-
+        public bool RemoveOrder(int x);
         Order GetOrderById(int OrderId);
     }
 }

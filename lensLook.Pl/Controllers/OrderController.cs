@@ -99,8 +99,8 @@ namespace lensLook.Pl.Controllers
         [HttpGet]
         public IActionResult RemoveOrder(int orderId)
         {
-
-            return View("Cart","Basket");
+            _orderServices.RemoveOrder(orderId);
+            return RedirectToAction("Cart","Basket");
         }
 
     }

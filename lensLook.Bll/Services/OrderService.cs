@@ -42,8 +42,31 @@ namespace lensLook.Bll.Services
         public List<Order> GetOrdersForUser(string UserId)
         {
             return _context.Order.Where(x => x.UserIdCreateOrder == UserId).Include(x=>x.Items).ToList();
-
-
         }
+
+
+
+
+        public bool RemoveOrder(int x )
+        {
+            try
+            {
+                _context.Order.Remove(GetOrderById(x));
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+
+
+
+
+
+
     }
 }
