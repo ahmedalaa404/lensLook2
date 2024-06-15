@@ -2,9 +2,8 @@
 
 namespace lensLook.Pl.Models
 {
-	public class RegisterVM
-	{
-
+    public class DoctorRegisterVM
+    {
         [Required(ErrorMessage = "First Name Is Required")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last Name Is Required")]
@@ -12,10 +11,6 @@ namespace lensLook.Pl.Models
         [Required(ErrorMessage = "Email Is Required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
-        //public string Gender { get; set; }
         [Required(ErrorMessage = "Password Is Rquired")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -23,15 +18,8 @@ namespace lensLook.Pl.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password Doesn't match")]
         public string ConfirmPassword { get; set; }
-        public bool IsActive { get; set; }
-
         [Phone]
-        public string? PhoneNumber { get; set; }
-
-
-
-
-
+        public string PhoneNumber { get; set; }
 
 
     }

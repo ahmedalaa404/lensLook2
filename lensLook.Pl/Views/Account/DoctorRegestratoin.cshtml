@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "DoctorRegestratoin";
+ 
+}
+@{
+    Layout = "_Layout";
+}
+
+<!-- join as a doctor -->
+<div class="container doc_regester">
+    <h1 class="mb-5">Doctor Registration</h1>
+    <div id="errorAlert" class="alert alert-danger error-alert" role="alert">
+        <span class="close-btn">&times;</span>
+        <div class="error-message">
+            <!-- Error messages will appear here -->
+        </div>
+    </div>
+    <form asp-action="DoctorRegestratoin" method="post" , id="doctorRegistrationForm" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label asp-for="FirstName" class="col-sm-2 col-form-label">First Name:</label>
+            <div class="col-sm-9">
+                <input asp-for="FirstName" class="form-control" id="firstName" name="firstName" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="LastName" class="col-sm-2 col-form-label">Last Name:</label>
+            <div class="col-sm-9">
+                <input asp-for="LastName" class="form-control" id="lastName" name="lastName" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="PhoneNumber" class="col-sm-2 col-form-label">Phone Number:</label>
+            <div class="col-sm-9">
+                <input asp-for="PhoneNumber"
+                       class="form-control"
+                       id="phoneNumber"
+                       name="phoneNumber"
+                       required />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Email" class="col-sm-2 col-form-label">Email Address:</label>
+            <div class="col-sm-9">
+                <input asp-for="Email"
+                       class="form-control"
+                       id="emailAddress"
+                       required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="HomeAddress" class="col-sm-2 col-form-label">Home Address:</label>
+            <div class="col-sm-9">
+                <textarea class="form-control"
+                          id="homeAddress"
+                          name="homeAddress"
+                          rows="3"
+                          required></textarea>
+                <span asp-validation-for="HomeAddress" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Specialization" class="col-sm-2 col-form-label">Specialization:</label>
+            <div class="col-sm-9">
+                <input asp-for="Specialization"
+                       class="form-control"
+                       id="specialization"
+                       name="specialization"
+                       required />
+                <span asp-validation-for="Specialization" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Experience" class="col-sm-2 col-form-label">Experience:</label>
+            <div class="col-sm-9">
+                <textarea class="form-control"
+                          id="qualifications"
+                          rows="3"
+                          required></textarea>
+                <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="MedicalLicenseNumber" class="col-sm-2 col-form-label">Medical License Number:</label>
+            <div class="col-sm-9">
+                <input asp-for="MedicalLicenseNumber"
+                       class="form-control"
+                       id="licenseNumber"
+                       required />
+                <span asp-validation-for="MedicalLicenseNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Image" class="col-sm-2 col-form-label">Upload Photo:</label>
+            <div class="col-sm-9">
+                <input asp-for="Image"
+                       class="form-control"
+                       id="photoUpload"
+                       accept="image/*"
+                       required />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label asp-for="Password" class="col-sm-2 col-form-label">Password:</label>
+            <div class="col-sm-9">
+                <input asp-for="Password"
+                       class="form-control"
+                       id="password"
+                       name="password"
+                       required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <small class="form-text password-terms">
+                    Password must be at least 8 characters long, contain an uppercase
+                    letter, a lowercase letter, a number, and a special character.
+                </small>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label asp-for="ConfirmPassword" class="col-sm-2 col-form-label">Confirm Password:</label>
+            <div class="col-sm-9">
+                <input asp-for="ConfirmPassword"
+                       class="form-control"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       required />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn main-btn">Register</button>
+    </form>
+</div>
+

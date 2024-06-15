@@ -1,6 +1,5 @@
 ﻿
 using lensLook.Dal.Models;
-using lensLook.Pl.Models;
 
 namespace lensLook.Dal
 {

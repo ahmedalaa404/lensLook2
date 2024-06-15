@@ -321,7 +321,52 @@ namespace lensLook.Pl.Controllers
         //}
         #endregion
 
+        public IActionResult DoctorRegestratoin()
+        {
 
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DoctorRegestratoin(RegisterVM Model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName =await  DocumentSetting.UploadFillesAsync(Model.Image, "Images");
+
+                var User = new user()
+                {
+                    FirstName = Model.FirstName,
+                    LastName = Model.LastName,
+                    UserName = Model.Email.Split("@")[0],
+                    Email = Model.Email.Trim().ToLower(),
+                    PhoneNumber = Model.PhoneNumber,
+                    DisplayName = Model.FirstName + Model.LastName,
+                    Experience = Model.Experience,
+                    Specialization = Model.Specialization,
+                    HomeAddress = Model.HomeAddress,
+                    MedicalLicenseNumber = Model.MedicalLicenseNumber,
+                    image = uniqueFileName,
+                    RoleName = "Doctor",
+                    NumberOfAppointments = Model.NumberOfAppointments
+
+                };
+                var Resulate = await _usermanager.CreateAsync(User, Model.Password);
+                if (Resulate.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+                else
+                {
+                    foreach (var item in Resulate.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, item.Description);
+                    }
+                }
+            }
+
+            return View(Model);
+        }
 
     }
 }
