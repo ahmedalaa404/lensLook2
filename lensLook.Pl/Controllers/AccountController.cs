@@ -328,30 +328,30 @@ namespace lensLook.Pl.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DoctorRegestratoin(RegisterVM Model)
+        public async Task<IActionResult> DoctorRegestratoin(ModelLoginAndRegister Model)
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName =await  DocumentSetting.UploadFillesAsync(Model.Image, "Images");
+                string uniqueFileName =await  DocumentSetting.UploadFillesAsync(Model.ModelRegister.Image, "Images");
 
                 var User = new user()
                 {
-                    FirstName = Model.FirstName,
-                    LastName = Model.LastName,
-                    UserName = Model.Email.Split("@")[0],
-                    Email = Model.Email.Trim().ToLower(),
-                    PhoneNumber = Model.PhoneNumber,
-                    DisplayName = Model.FirstName + Model.LastName,
-                    Experience = Model.Experience,
-                    Specialization = Model.Specialization,
-                    HomeAddress = Model.HomeAddress,
-                    MedicalLicenseNumber = Model.MedicalLicenseNumber,
+                    FirstName = Model.ModelRegister.FirstName,
+                    LastName = Model.ModelRegister.LastName,
+                    UserName = Model.ModelRegister.Email.Split("@")[0],
+                    Email = Model.ModelRegister.Email.Trim().ToLower(),
+                    PhoneNumber = Model.ModelRegister.PhoneNumber,
+                    DisplayName = Model.ModelRegister.FirstName + Model.ModelRegister.LastName,
+                    Experience = Model.ModelRegister.Experience,
+                    Specialization = Model.ModelRegister.Specialization,
+                    HomeAddress = Model.ModelRegister.HomeAddress,
+                    MedicalLicenseNumber = Model.ModelRegister.MedicalLicenseNumber,
                     image = uniqueFileName,
                     RoleName = "Doctor",
-                    NumberOfAppointments = Model.NumberOfAppointments
+                    NumberOfAppointments = Model.ModelRegister.NumberOfAppointments
 
                 };
-                var Resulate = await _usermanager.CreateAsync(User, Model.Password);
+                var Resulate = await _usermanager.CreateAsync(User, Model.ModelRegister.Password);
                 if (Resulate.Succeeded)
                 {
                     return RedirectToAction(nameof(Login));

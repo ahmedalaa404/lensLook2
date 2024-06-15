@@ -16,11 +16,9 @@ namespace lensLook.Pl.Models
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         //public string Gender { get; set; }
-        [Required(ErrorMessage = "Password Is Rquired")]
-        [DataType(DataType.Password)]
+
         public string Password { get; set; }
-        [Required(ErrorMessage = "Confirm Password Is Rquired")]
-        [DataType(DataType.Password)]
+
         [Compare("Password", ErrorMessage = "Password Doesn't match")]
         public string ConfirmPassword { get; set; }
         public bool IsActive { get; set; }

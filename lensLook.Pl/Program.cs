@@ -92,9 +92,10 @@ namespace lensLook.Pl
             {
 
                 var Manager = Services.GetRequiredService<UserManager<user>>();
+                var RoleManager = Services.GetRequiredService<RoleManager<IdentityRole>>();
 
 
-                await SeedData.Seed(Manager);
+                await SeedData.Seed(Manager, RoleManager);
             }
             catch (Exception ex)
             {
