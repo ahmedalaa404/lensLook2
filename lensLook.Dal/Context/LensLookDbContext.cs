@@ -2,6 +2,8 @@
 using lensLook.Dal.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Reflection.Emit;
 
 namespace lensLook.Dal.Context
 {
@@ -31,12 +33,25 @@ namespace lensLook.Dal.Context
             modelbuilder.Entity<user>().HasMany(x => x.AdminBooking).WithOne(x => x.Admin).HasForeignKey(x => x.AdminId);
 
 
+            var converter = new EnumToStringConverter<BookingType>();
+            var converter2 = new EnumToStringConverter<BookingStatus>();
+
+            modelbuilder
+                .Entity<Services>()
+                .Property(b => b.BookingType)
+                .HasConversion(converter);
+
+
 
 
             modelbuilder.Entity<Booking>().HasOne(x => x.Services).WithMany(x=>x.Bookings).HasForeignKey(x => x.ServiceId);
 
+
+
+
+
             modelbuilder.Entity<Booking>().Property(x => x.AdminStatus)
-                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+                             .HasConversion(converter2);
 
 
 
@@ -44,12 +59,12 @@ namespace lensLook.Dal.Context
 
 
             modelbuilder.Entity<Booking>().Property(x => x.DoctorStatus)
-                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+                             .HasConversion(converter2);
 
 
 
             modelbuilder.Entity<Booking>().Property(x => x.Status)
-                .HasConversion(x => x.ToString(), dataToreturn => (BookingStatus)Enum.Parse(typeof(BookingStatus), dataToreturn));
+                             .HasConversion(converter2);
 
 
 
@@ -68,7 +83,7 @@ namespace lensLook.Dal.Context
         public DbSet<BasketItems> BasketItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Order { get; set; }
-        public DbSet<Booking> BookingS { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         public DbSet<Services> Services { get; set; }
 
     }

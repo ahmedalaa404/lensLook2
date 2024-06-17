@@ -29,7 +29,7 @@ namespace lensLook.Pl
             }
 
 
-            if (_RoleManager.Roles.Any())
+            if (!_RoleManager.Roles.Any())
             {
 
 

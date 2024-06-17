@@ -13,12 +13,14 @@ namespace lensLook.Pl.Controllers
         private readonly UserManager<user> _usermanager; // To sign IN User;
         private readonly SignInManager<user> _signManager  /*to make User Create*/;
         private readonly IEmailSettings _Mailmanager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserManager<user> usermanager, SignInManager<user> SignManager, IEmailSettings mailmanager)
+        public AccountController(UserManager<user> usermanager, SignInManager<user> SignManager, IEmailSettings mailmanager,RoleManager<IdentityRole> roleManager)
         {
             _usermanager = usermanager;
             _signManager = SignManager;
             _Mailmanager = mailmanager;
+            this.roleManager = roleManager;
         }
 
 
@@ -67,13 +69,16 @@ namespace lensLook.Pl.Controllers
                     Email = Model.Email.Trim().ToLower(),
                     IsActive = Model.IsActive,
                     DisplayName=Model.FirstName + Model.LastName,
-                    PhoneNumber = string.Concat("+2", Model.PhoneNumber)
+                    PhoneNumber = string.Concat("+2", Model.PhoneNumber),
+                    RoleName= "Patient"
 
                 };
 
                 var Resulate = await _usermanager.CreateAsync(User, Model.Password);
                 if (Resulate.Succeeded)
                 {
+                    var RolenName = roleManager.Roles.FirstOrDefault(x => x.Name == "Patient");
+                    await _usermanager.AddToRoleAsync(User, RolenName.ToString());
                     return RedirectToAction(nameof(Login));
                 }
                 else
@@ -333,6 +338,14 @@ namespace lensLook.Pl.Controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName =await  DocumentSetting.UploadFillesAsync(Model.ModelRegister.Image, "Images");
+                var DuplicateEmail = await _usermanager.FindByEmailAsync(Model.ModelRegister.Email);
+                if(DuplicateEmail!=null)
+                {
+                    ModelState.AddModelError(string.Empty, "U Have Account Before ");
+                    return View();
+
+                }
+
 
                 var User = new user()
                 {
@@ -354,6 +367,8 @@ namespace lensLook.Pl.Controllers
                 var Resulate = await _usermanager.CreateAsync(User, Model.ModelRegister.Password);
                 if (Resulate.Succeeded)
                 {
+                    var RolenName= roleManager.Roles.FirstOrDefault(x=>x.Name== "Doctor");
+                  await  _usermanager.AddToRoleAsync(User, RolenName.ToString());
                     return RedirectToAction(nameof(Login));
                 }
                 else

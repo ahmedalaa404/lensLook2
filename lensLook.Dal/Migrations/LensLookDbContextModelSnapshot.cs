@@ -165,12 +165,9 @@ namespace lensLook.Dal.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("BasketCustomers");
                 });
@@ -288,7 +285,7 @@ namespace lensLook.Dal.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("BookingS");
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("lensLook.Dal.Models.Order", b =>
@@ -365,11 +362,9 @@ namespace lensLook.Dal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("BookingType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BookingType")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -382,6 +377,9 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BasketCustomersId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -410,7 +408,6 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HomeAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -427,7 +424,6 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("MedicalLicenseNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -461,7 +457,6 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Specialization")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -472,10 +467,13 @@ namespace lensLook.Dal.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BasketCustomersId")
+                        .IsUnique()
+                        .HasFilter("[BasketCustomersId] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -590,17 +588,6 @@ namespace lensLook.Dal.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
-                {
-                    b.HasOne("lensLook.Dal.Models.user", "user")
-                        .WithOne("BasketCustomers")
-                        .HasForeignKey("lensLook.Dal.Models.BasketCustomer", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("user");
-                });
-
             modelBuilder.Entity("lensLook.Dal.Models.BasketItems", b =>
                 {
                     b.HasOne("lensLook.Dal.Models.BasketCustomer", "BasketCustomer")
@@ -685,9 +672,21 @@ namespace lensLook.Dal.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("lensLook.Dal.Models.user", b =>
+                {
+                    b.HasOne("lensLook.Dal.Models.BasketCustomer", "BasketCustomers")
+                        .WithOne("user")
+                        .HasForeignKey("lensLook.Dal.Models.user", "BasketCustomersId");
+
+                    b.Navigation("BasketCustomers");
+                });
+
             modelBuilder.Entity("lensLook.Dal.Models.BasketCustomer", b =>
                 {
                     b.Navigation("BasketItems");
+
+                    b.Navigation("user")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("lensLook.Dal.Models.Order", b =>
@@ -703,9 +702,6 @@ namespace lensLook.Dal.Migrations
             modelBuilder.Entity("lensLook.Dal.Models.user", b =>
                 {
                     b.Navigation("AdminBooking");
-
-                    b.Navigation("BasketCustomers")
-                        .IsRequired();
 
                     b.Navigation("DoctorBooking");
 

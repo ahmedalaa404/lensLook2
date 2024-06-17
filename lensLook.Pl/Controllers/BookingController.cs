@@ -1,37 +1,36 @@
-﻿//using AutoMapper;
-//using lensLook.Dal.Models;
-//using Microsoft.AspNetCore.Mvc;
+﻿using lensLook.Dal.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-//namespace lensLook.Pl.Controllers
-//{
-//    public class BookingController : Controller
-//    {
-//        private readonly IUnitOfWork _unitOfWork;
-//        private readonly IMapper _mapper;
-//        public BookingController(IUnitOfWork unitOfWork,
-//            IMapper mapper)
-//        {
+namespace lensLook.Pl.Controllers
+{
+    [Authorize]
+    public class BookingController : Controller
+    {
 
-//            _unitOfWork = unitOfWork;
-//            _mapper = mapper;
-//        }
+        [HttpGet]
+        public IActionResult Repair()
+        {
+            return View();
+        }
 
-//        public IActionResult Appointment()
-//        {
-//            return View();
-//        }
-//        [HttpGet]
-//        public async Task<IActionResult> HomeAppointment()
-//        {
-//            var Booking = await _unitOfWork.BookingRepo.GetAllAsync();
-//            return View();
-//        }
-//        [HttpPost]
-//        public async Task<IActionResult> HomeAppointment(BookingVM bookingVM, int UserId)
-//        {
-//            var MappedBooking = _mapper.Map<BookingVM, Booking>(bookingVM);
-//            await _unitOfWork.BookingRepo.addasync(MappedBooking);
-//            return View();
-//        }
-//    }
-//}
+
+        [HttpPost]
+        public IActionResult Repair(Booking model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+
+            return View();
+        }
+
+
+
+
+
+
+
+    }
+}

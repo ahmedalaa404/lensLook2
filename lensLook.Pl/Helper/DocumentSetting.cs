@@ -11,7 +11,7 @@ namespace lensLook.Pl.Helper
 		public static async Task<string> UploadFillesAsync(IFormFile File, string FolderName)
 		{
 			//GetLocated Foled Path
-			string FolderPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Filles", FolderName);
+			string FolderPath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/files", FolderName);
 			//2-GetFillesName And Make It Unique
 			string FileName = $"{Guid.NewGuid()}{File.FileName}";
 			//2-Make File Path

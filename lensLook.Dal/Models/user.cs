@@ -21,18 +21,23 @@ namespace lensLook.Dal.Models
 
         public int? Experience { get; set; }
 
-        [Required]
+
+
+
+
+
+
         public string? Specialization { get; set; }
 
         public int? NumberOfAppointments { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal? Salary { get; set; }
-        [Required]
+
         public string? MedicalLicenseNumber { get; set; }
-        [Required]
+
         public string? HomeAddress { get; set; }
-        [Required]
+
         public string? image { get; set; }
 
         public string RoleName { get; set; }
@@ -42,9 +47,10 @@ namespace lensLook.Dal.Models
 
 
 
+        [ForeignKey("BasketCustomers")]
+        public int? BasketCustomersId { get; set; }
 
-
-        public BasketCustomer BasketCustomers { get; set; }
+        public BasketCustomer? BasketCustomers { get; set; }
 
 
 
