@@ -93,22 +93,44 @@
                 <span asp-validation-for="ModelRegister.Image" class="text-danger"></span>
             </div>
         </div>
-        <div class="row mb-3">
+
+
+
+                <div class="row mb-3">
+            <label asp-for="ModelRegister.Image" class="col-sm-2 col-form-label">Upload Photo:</label>
+            <div class="col-sm-9">
+                <input asp-for="ModelRegister.DateOfBirth" type="datetime-local" class="form-control" required>
+                <span asp-validation-for="ModelRegister.Image" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <di class="row mb-3">
             <label asp-for="ModelRegister.Password" class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-9">
-                <input asp-for="ModelRegister.Password" class="form-control"  required />
+                <input asp-for="ModelRegister.Password" class="form-control" type="password"  required />
                 <span asp-validation-for="ModelRegister.Password" class="text-danger"></span>
                 <small class="form-text password-terms">
                     Password must be at least 8 characters long, contain an uppercase
                     letter, a lowercase letter, a number, and a special character.
                 </small>
             </div>
-        </div>
+        </di
+        
+        
+        
+        v>
 
         <div class="row mb-3">
             <label asp-for="ModelRegister.ConfirmPassword" class="col-sm-2 col-form-label">Confirm Password:</label>
             <div class="col-sm-9">
-                <input asp-for="ModelRegister.ConfirmPassword"
+                <input asp-for="ModelRegister.ConfirmPassword" type="password" 
                        class="form-control"
                        required />
                 <span asp-validation-for="ModelRegister.ConfirmPassword" class="text-danger"></span>

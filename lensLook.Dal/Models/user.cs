@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace lensLook.Dal.Models
 {
@@ -34,6 +35,7 @@ namespace lensLook.Dal.Models
         [DataType(DataType.Currency)]
         public decimal? Salary { get; set; }
 
+        [AllowNull]
         public string? MedicalLicenseNumber { get; set; }
 
         public string? HomeAddress { get; set; }

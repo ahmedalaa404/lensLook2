@@ -29,13 +29,13 @@ namespace lensLook.Pl.Models
 
 
         #region Property of Doctor
-        [Required]
-        public int Experience { get; set; }
-        [Required]
-        public string Specialization { get; set; }
-        public string MedicalLicenseNumber { get; set; }
-        [Required]
-        public string HomeAddress { get; set; }
+
+        public int? Experience { get; set; }
+
+        public string? Specialization { get; set; }
+        public string? MedicalLicenseNumber { get; set; }
+
+        public string? HomeAddress { get; set; }
         public IFormFile? Image { get; set; }
 
         public int? NumberOfAppointments { get; set; }

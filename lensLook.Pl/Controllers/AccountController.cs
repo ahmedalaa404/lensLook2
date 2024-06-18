@@ -73,6 +73,7 @@ namespace lensLook.Pl.Controllers
                     IsActive = Model.IsActive,
                     DisplayName=Model.FirstName + Model.LastName,
                     PhoneNumber = string.Concat("+2", Model.PhoneNumber),
+                    DateOfBirth=Model.DateOfBirth,
                     RoleName= "Patient",
                 };
 
@@ -363,6 +364,7 @@ namespace lensLook.Pl.Controllers
                     Specialization = Model.ModelRegister.Specialization,
                     HomeAddress = Model.ModelRegister.HomeAddress,
                     MedicalLicenseNumber = Model.ModelRegister.MedicalLicenseNumber,
+                    DateOfBirth=Model.ModelRegister.DateOfBirth,
                     image = uniqueFileName,
                     RoleName = "Doctor",
                     NumberOfAppointments = Model.ModelRegister.NumberOfAppointments
@@ -372,7 +374,8 @@ namespace lensLook.Pl.Controllers
                 if (Resulate.Succeeded)
                 {
                     var RolenName= roleManager.Roles.FirstOrDefault(x=>x.Name== "Doctor");
-                  await  _usermanager.AddToRoleAsync(User, RolenName.ToString());
+                    context.BasketCustomers.Add(new BasketCustomer() { UserId = User.Id });
+                    await  _usermanager.AddToRoleAsync(User, RolenName.ToString());
                     return RedirectToAction(nameof(Login));
                 }
                 else

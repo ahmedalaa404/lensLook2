@@ -57,6 +57,11 @@ namespace lensLook.Bll.Services
             return _Context.Bookings.ToList();
         }
 
+        public List<Booking> GetAllForDoctor(string Id)
+        {
+            return _Context.Bookings.Where(x=>x.DoctorId== Id&&x.DoctorStatus==BookingStatus.Pending).ToList();
+        }
+
         public Booking GetById(int Id)
         {
           return  _Context.Bookings.FirstOrDefault(x=>Id==Id);

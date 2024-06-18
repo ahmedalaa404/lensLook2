@@ -11,6 +11,6 @@ namespace lensLook.Bll
         public bool ChangeStatus(int Id, string Status);
 
         List<lensLook.Dal.Models.Booking> GetServicesByUser(string IdUser);
-
+        List<Booking> GetAllForDoctor(string Id);
     }
 }
