@@ -3,10 +3,7 @@ using lensLook.Dal.Context;
 using lensLook.Dal.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lensLook.Bll.Services
 {
@@ -14,108 +11,91 @@ namespace lensLook.Bll.Services
     {
         private readonly LensLookDbContext _context;
 
-        public BasketRepo(LensLookDbContext Context)
+        public BasketRepo(LensLookDbContext context)
         {
-            _context = Context;
+            _context = context;
         }
 
-        public int GetCountBasketItems(string IdUser)
+        public int GetCountBasketItems(string userId)
         {
-            var BasketItem = _context.BasketCustomers.Include(x => x.BasketItems).Where(x => x.UserId == IdUser).FirstOrDefault();
+            var basketCustomer = _context.BasketCustomers
+                .Include(bc => bc.BasketItems)
+                .FirstOrDefault(bc => bc.UserId == userId);
 
-            return BasketItem.BasketItems.Count();
+            return basketCustomer?.BasketItems.Count ?? 0;
         }
 
-        public BasketCustomer GetCustomerBasket(string IdUser)
+        public BasketCustomer GetCustomerBasket(string userId)
         {
-
-            return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x=>x.Product).FirstOrDefault(x => x.UserId == IdUser);
-
-        }
-        public BasketCustomer GetCustomerBasketWithProduct(string IdUser)
-        {
-
-            return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == IdUser);
-
+            return _context.BasketCustomers
+                .Include(bc => bc.BasketItems)
+                .ThenInclude(bi => bi.Product)
+                .FirstOrDefault(bc => bc.UserId == userId);
         }
 
+        public BasketCustomer GetCustomerBasketWithProduct(string userId)
+        {
+            return GetCustomerBasket(userId); // This method can be consolidated with GetCustomerBasket
+        }
 
+        public BasketCustomer GetCustomerBasketWithProductById(int customerBasketId)
+        {
+            return _context.BasketCustomers
+                .Include(bc => bc.BasketItems)
+                .ThenInclude(bi => bi.Product)
+                .FirstOrDefault(bc => bc.Id == customerBasketId);
+        }
 
-
-
-		public BasketCustomer GetCustomerBasketWithProductById(int Customerbasket)
-		{
-
-			return _context.BasketCustomers.Include(x => x.BasketItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.Id == Customerbasket);
-
-		}
-
-
-
-
-		public bool UpdateBasket(BasketCustomer NewBasket)
+        public bool UpdateBasket(BasketCustomer newBasket)
         {
             try
             {
-                _context.BasketCustomers.Update(NewBasket);
-                _context.BasketItems.Where(x => x.CustomerBasketId == null && x.Productid == NewBasket.Id);
+                _context.BasketCustomers.Update(newBasket);
                 _context.SaveChanges();
                 return true;
             }
             catch (Exception)
             {
                 return false;
-                throw;
             }
-
         }
-        //public bool DeleteBasket(BasketCustomer customer)
-        //{
-        //    try
-        //    {
-        //        _context.BasketCustomers.Remove(customer);
-        //        _context.SaveChanges();
-        //        return true;
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
-        //        throw;
-        //    }
+        // Uncomment and improve if needed later
+        // public bool DeleteBasket(BasketCustomer customer)
+        // {
+        //     try
+        //     {
+        //         _context.BasketCustomers.Remove(customer);
+        //         _context.SaveChanges();
+        //         return true;
+        //     }
+        //     catch (Exception)
+        //     {
+        //         return false;
+        //     }
+        // }
 
+        // public async Task<BasketCustomer?> GetBasketCustomer(int id)
+        // {
+        //     return await _context.BasketCustomers
+        //         .FirstOrDefaultAsync(bc => bc.Id == id);
+        // } 
 
-        //}
-
-        //public async Task<BasketCustomer?> GetBasketCustomer(int id)
-        //{
-
-        //    var Basket1=   await  _context.BasketCustomers.Where(x => x.Id == id).FirstOrDefaultAsync();
-
-
-        //    return (Basket1 ==null)? null : Basket1;
-
-
-        //} 
-
-        //public async Task<BasketCustomer?> UpdateBasket(BasketCustomer Basket)
-        //{
-        //    if(Basket.Id!=null)
-        //    {
-        //        _context.BasketCustomers.Update(Basket);
-        //        return await _context.BasketCustomers.Where(x => x.Id == Basket.Id).FirstOrDefaultAsync();
-        //    }
-        //    else
-        //    {
-        //        _context.BasketCustomers.Add(Basket);
-        //        return null;
-        //    }
-
-        //}
-
-
-
-
+        // public async Task<BasketCustomer?> UpdateBasket(BasketCustomer basket)
+        // {
+        //     if (basket.Id != 0)
+        //     {
+        //         _context.BasketCustomers.Update(basket);
+        //         await _context.SaveChangesAsync();
+        //         return await _context.BasketCustomers
+        //             .FirstOrDefaultAsync(bc => bc.Id == basket.Id);
+        //     }
+        //     else
+        //     {
+        //         _context.BasketCustomers.Add(basket);
+        //         await _context.SaveChangesAsync();
+        //         return null;
+        //     }
+        // }
     }
-
 }
