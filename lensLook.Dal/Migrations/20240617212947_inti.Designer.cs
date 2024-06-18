@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lensLook.Dal.Context;
 
@@ -11,9 +12,11 @@ using lensLook.Dal.Context;
 namespace lensLook.Dal.Migrations
 {
     [DbContext(typeof(LensLookDbContext))]
-    partial class LensLookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240617212947_inti")]
+    partial class inti
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,6 +236,9 @@ namespace lensLook.Dal.Migrations
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("AppointmentTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(450)");
 
@@ -254,16 +260,12 @@ namespace lensLook.Dal.Migrations
                     b.Property<string>("HomeAddres")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Reason")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");

@@ -1,0 +1,79 @@
+﻿using lensLook.Dal.Context;
+using lensLook.Dal.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lensLook.Bll.Services
+{
+    
+    public class RequestServicesRepo : IRequestServices
+    {
+        private readonly LensLookDbContext _Context;
+
+        public RequestServicesRepo(LensLookDbContext context)
+        {
+            _Context = context;
+        }
+        public bool ChangeStatus(int Id, string Status)
+        {
+            var OldRequest = GetById(Id);
+
+            if (OldRequest == null)
+            {
+                return false; // or handle the case where the entity with Id is not found
+            }
+
+            // Assuming Status is of type bookingStatus enum
+            if (Enum.TryParse(Status, out BookingStatus newStatus))
+            {
+                OldRequest.Status = newStatus;
+
+                // Update entity in DbSet
+                _Context.Bookings.Update(OldRequest);
+
+                // Save changes to database
+                _Context.SaveChanges();
+
+                return true; // Return true to indicate success
+            }
+            else
+            {
+                return false; // Handle case where Status string cannot be parsed to enum
+            }
+        }
+
+        public bool Create(Booking model)
+        {
+            _Context.Bookings.Add(model);
+            _Context.SaveChanges();
+            return true;
+        }
+
+        public List<Booking> GetAll()
+        {
+            return _Context.Bookings.ToList();
+        }
+
+        public Booking GetById(int Id)
+        {
+          return  _Context.Bookings.FirstOrDefault(x=>Id==Id);
+        }
+
+        public List<Dal.Models.Booking> GetServicesByUser(string IdUser)
+        {
+           return _Context.Bookings.Where(x=>x.UserId==IdUser).ToList();
+        }
+
+        public bool Update(Booking model)
+        {
+            _Context.Update(model);
+            _Context.SaveChanges();
+            return true;
+        }
+
+
+    }
+}

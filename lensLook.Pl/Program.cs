@@ -43,8 +43,10 @@ namespace lensLook.Pl
 
             builder.Services.AddScoped<IBasketRepo, BasketRepo>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IServicesRepo, ServicesRepo>();
+            builder.Services.AddScoped<IRequestServices, RequestServicesRepo>();
 
-
+            builder.Services.AddAutoMapper(typeof(maping));
 
             // Configuration of Account of Security Module 
 
@@ -93,9 +95,10 @@ namespace lensLook.Pl
 
                 var Manager = Services.GetRequiredService<UserManager<user>>();
                 var RoleManager = Services.GetRequiredService<RoleManager<IdentityRole>>();
+                var Context = Services.GetRequiredService<LensLookDbContext>();
 
 
-                await SeedData.Seed(Manager, RoleManager);
+                await SeedData.Seed(Manager, RoleManager, Context);
             }
             catch (Exception ex)
             {

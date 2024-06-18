@@ -70,7 +70,13 @@ namespace lensLook.Pl.Controllers
                     IsActive = Model.IsActive,
                     DisplayName=Model.FirstName + Model.LastName,
                     PhoneNumber = string.Concat("+2", Model.PhoneNumber),
-                    RoleName= "Patient"
+                    RoleName= "Patient",
+                    BasketCustomers=new BasketCustomer()
+                    {
+
+                    },
+
+                    
 
                 };
 

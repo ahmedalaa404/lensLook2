@@ -8,6 +8,8 @@ namespace lensLook.Bll
         List<lensLook.Dal.Models.Services> GetAll();
 
         lensLook.Dal.Models.Services GetById(int id);
+        lensLook.Dal.Models.Services GetByName(string id);
+        
 
 
 
