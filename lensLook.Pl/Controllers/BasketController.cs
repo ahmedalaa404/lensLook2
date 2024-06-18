@@ -45,7 +45,7 @@ namespace lensLook.Pl.Controllers
                 {
                     Productid = Product,
                     Quantity = 1,
-                    Photo = product.Image,
+                    Photo = product.PictureUrl,
                     price = product.Price,
                     Name = product.Name,
                 });

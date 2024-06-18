@@ -28,8 +28,6 @@ namespace lensLook.Dal.models
         [Required]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-        [Required]
-        public string Image { get; set; }
 
         public bool IsActive { get; set; }
 

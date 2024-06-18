@@ -8,6 +8,22 @@
     Layout = "_LayoutWithAuth";
 }
 
+@section Linkedcss{
+    <style>
+
+        .container.py-5 {
+            max-width: none !important;
+        }
+    </style>
+
+}
+
+
+
+
+
+
+
 <section class="h-100 gradient-custom">
 
 
@@ -55,7 +71,7 @@
                                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                         <!-- Image -->
                                         <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                            <img src="_ProductRepo"
+                                            <img src="@item.Photo"
                                                  class="w-100" alt="@item.Name" />
                                             <a href="#!">
                                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>

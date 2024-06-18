@@ -1,4 +1,5 @@
-﻿using lensLook.Dal.Models;
+﻿using lensLook.Dal.Context;
+using lensLook.Dal.Models;
 using lensLook.Pl.Helper;
 using lensLook.Pl.Models;
 using lensLook.PL.ViewModel;
@@ -10,13 +11,15 @@ namespace lensLook.Pl.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly LensLookDbContext context;
         private readonly UserManager<user> _usermanager; // To sign IN User;
         private readonly SignInManager<user> _signManager  /*to make User Create*/;
         private readonly IEmailSettings _Mailmanager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserManager<user> usermanager, SignInManager<user> SignManager, IEmailSettings mailmanager,RoleManager<IdentityRole> roleManager)
+        public AccountController(LensLookDbContext Context,UserManager<user> usermanager, SignInManager<user> SignManager, IEmailSettings mailmanager,RoleManager<IdentityRole> roleManager)
         {
+            context = Context;
             _usermanager = usermanager;
             _signManager = SignManager;
             _Mailmanager = mailmanager;
@@ -71,19 +74,14 @@ namespace lensLook.Pl.Controllers
                     DisplayName=Model.FirstName + Model.LastName,
                     PhoneNumber = string.Concat("+2", Model.PhoneNumber),
                     RoleName= "Patient",
-                    BasketCustomers=new BasketCustomer()
-                    {
-
-                    },
-
-                    
-
                 };
 
                 var Resulate = await _usermanager.CreateAsync(User, Model.Password);
+
                 if (Resulate.Succeeded)
                 {
                     var RolenName = roleManager.Roles.FirstOrDefault(x => x.Name == "Patient");
+                    context.BasketCustomers.Add(new BasketCustomer() {UserId= User.Id });
                     await _usermanager.AddToRoleAsync(User, RolenName.ToString());
                     return RedirectToAction(nameof(Login));
                 }
