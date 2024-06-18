@@ -6,7 +6,6 @@ namespace lensLook.Pl.Models
 	{
 		[Required(ErrorMessage = "This Column Is Required")]
 		[EmailAddress(ErrorMessage = "Enter Email Valid ")]
-
 		public string Email { get; set; }
 
 		[DataType(DataType.Password)]

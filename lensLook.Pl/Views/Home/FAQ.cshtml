@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     if (User.Identity.IsAuthenticated)
     {
 
@@ -23,380 +22,158 @@
 
 
 
+<section class="landing container-fluid p-0 d-grid position-relative align-items-center">
+    <img src="~/photos/faq0.jpg"
+         alt="About us"
+         class="img-fluid position-absolute" />
+    <div class="overlay display-flex align-items-center justify-content-center opacity-50">
+        <h3>FAQ</h3>
+    </div>
+</section>
 
-
-    <section class="landing container-fluid p-0 d-grid position-relative align-items-center">
-        <img src="~/photos/about_us.jpg"
-             alt="About us"
-             class="img-fluid position-absolute" />
-        <div class="overlay display-flex align-items-center justify-content-center opacity-50">
+<div class="container page-content">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 all">
             <h3>FAQ</h3>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 all">
-                <h3>FAQ</h3>
-                <h1>General Question</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <div class="accordion" id="accordionExample">
-                    <button class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne"
-                            aria-expanded="false"
-                            aria-controls="collapseOne">
-                        Where Can I Find More Information
-                    </button>
-                    <div id="collapseOne"
+            <h1>General Question</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <div class="accordion accordion-flush container2"
+                 id="eyeCareAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEyeCare">
+                        <button class="accordion-button collapsed main-btn fs-4 p-3 rounded"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseEyeCare"
+                                aria-expanded="false"
+                                aria-controls="collapseEyeCare">
+                            Eye Care and Preventative Measures
+                        </button>
+                    </h2>
+                    <div id="collapseEyeCare"
                          class="accordion-collapse collapse"
-                         aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
+                         aria-labelledby="headingEyeCare"
+                         data-bs-parent="#eyeCareAccordion">
                         <div class="accordion-body">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                        </div>
-                    </div>
-
-                    <button class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo"
-                            aria-expanded="false"
-                            aria-controls="collapseTwo">
-                        What Kinds of Payment Do You Accept
-                    </button>
-                    <div id="collapseTwo"
-                         class="accordion-collapse collapse"
-                         aria-labelledby="headingTwo"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <p>
-                                The quick brown fox jumps over the lazy dog. Vivamus sagittis
-                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
-                                ullamcorper nulla non metus auctor fringilla. Nulla vitae elit
-                                libero, a pharetra augue.
-                            </p>
-                        </div>
-                    </div>
-
-                    <button class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree"
-                            aria-expanded="false"
-                            aria-controls="collapseThree">
-                        What Are Your Terms and Conditions ?
-                    </button>
-                    <div id="collapseThree"
-                         class="accordion-collapse collapse"
-                         aria-labelledby="headingThree"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <p>
-                                Curabitur blandit tempus porttitor. Aenean lacinia bibendum
-                                nulla sed consectetur. Cras mattis consectetur purus sit amet
-                                fermentum. Donec id elit non mi porta gravida at eget metus.
-                            </p>
-                        </div>
-                    </div>
-
-                    <button class="accordion-button collapsed"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour"
-                            aria-expanded="false"
-                            aria-controls="collapseFour">
-                        Section 4
-                    </button>
-                    <div id="collapseFour"
-                         class="accordion-collapse collapse"
-                         aria-labelledby="headingFour"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <p>
-                                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                Vestibulum id ligula porta felis euismod semper. Sed posuere
-                                consectetur est at lobortis. Aenean eu leo quam. Pellentesque
-                                ornare sem lacinia quam venenatis vestibulum.
-                            </p>
+                            Taking proactive steps to care for your eyes is crucial for
+                            maintaining optimal vision and preventing potential eye
+                            conditions. Regular eye exams are fundamental; they can detect
+                            early signs of diseases such as glaucoma, cataracts, and
+                            macular degeneration before noticeable symptoms emerge. An
+                            annual check-up allows eye care professionals to monitor
+                            changes in vision and adjust prescriptions for glasses or
+                            contact lenses accordingly. Moreover, adopting a diet rich in
+                            omega-3 fatty acids, vitamins C and E, and zinc can support
+                            eye health. Foods like leafy greens, fish, nuts, and citrus
+                            fruits provide essential nutrients that help protect against
+                            age-related vision issues.
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 col-sm-12 right">
-                <img class="cover-photo img-fluid"
-                     src="~/photos/faq3.jpg"
-                     alt="Cover Photo" />
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade"
-         id="loginPopup"
-         tabindex="-1"
-         aria-labelledby="loginPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="loginPopupLabel">Login</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="login_form">
-                        <div class="mb-3">
-                            <label for="log_username" class="form-label fw-bold">Username</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="log_username"
-                                   aria-describedby="usernameHelp"
-                                   placeholder="Enter your username"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="log_password" class="form-label fw-bold">
-                                Password <i class="fa-solid fa-eye-slash"></i>
-                            </label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="log_password"
-                                   placeholder="Enter your password"
-                                   required />
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox"
-                                   class="form-check-input"
-                                   id="rememberMe" />
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">
-                            Login
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEyeDiseases">
+                        <button class="accordion-button collapsed main-btn fs-4 p-3 rounded"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseEyeDiseases"
+                                aria-expanded="false"
+                                aria-controls="collapseEyeDiseases">
+                            Protecting Your Eyes from Digital Strain
                         </button>
-                        <a href="#"
-                           id="forgotPasswordLink"
-                           data-bs-toggle="modal"
-                           data-bs-target="#forgotPasswordPopup">Forgot Password?</a>
-                        <hr />
-                        <p class="text-center fw-bold">OR</p>
-                        <hr />
-                        <div class="text-center log-option mb-3">
-                            <a href="#" class="btn main-btn btn-sm me-2 ms-0">
-                                <i class="fab fa-facebook-f me-3"></i> Login with Facebook
-                            </a>
-                            <a href="#" class="btn btn-light btn-sm main-btn ms-0">
-                                <i class="fab fa-google me-3"></i> Login with Google
-                            </a>
+                    </h2>
+                    <div id="collapseEyeDiseases"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingEyeDiseases"
+                         data-bs-parent="#eyeCareAccordion">
+                        <div class="accordion-body">
+                            Protecting Your Eyes from Digital Strain In today's digital
+                            age, many people spend extended periods staring at screens,
+                            which can lead to digital eye strain or computer vision
+                            syndrome. Symptoms include dry eyes, headaches, blurred
+                            vision, and neck and shoulder pain. To mitigate these effects,
+                            the 20-20-20 rule is highly recommended: every 20 minutes,
+                            take a 20-second break to look at something 20 feet away.
+                            Additionally, ensuring your screen is at eye level and
+                            maintaining a comfortable distance can reduce strain. Using
+                            anti-glare screens and proper lighting can further protect
+                            your eyes from the harsh blue light emitted by digital
+                            devices, potentially reducing the risk of long-term damage.
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade"
-         id="forgotPasswordPopup"
-         tabindex="-1"
-         aria-labelledby="forgotPasswordPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="forgotPasswordPopupLabel">
-                        Forgot Password
-                    </h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="forgotPasswordForm">
-                        <div class="mb-3">
-                            <label for="forgot_email" class="form-label fw-bold">Email Address</label>
-                            <input type="email"
-                                   class="form-control"
-                                   id="forgot_email"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter your email address"
-                                   required />
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">
-                            <a href=""
-                               id="newPasswordPopuplink"
-                               data-bs-toggle="modal"
-                               data-bs-target="#newPasswordPopup"
-                               style="text-decoration: none; color: white">Send Reset Link</a>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEyeCauses">
+                        <button class="accordion-button collapsed main-btn fs-4 p-3 rounded"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseEyeCauses"
+                                aria-expanded="false"
+                                aria-controls="collapseEyeCauses">
+                            Lifestyle Choices for Healthy Vision
                         </button>
-                    </form>
+                    </h2>
+                    <div id="collapseEyeCauses"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingEyeCauses"
+                         data-bs-parent="#eyeCareAccordion">
+                        <div class="accordion-body">
+                            Several lifestyle choices significantly impact eye health,
+                            emphasizing the importance of protecting your eyes from
+                            external harm. Wearing sunglasses with UV protection shields
+                            your eyes from harmful ultraviolet rays, which can cause
+                            cataracts and other eye damage over time. Smokers are at
+                            higher risk for eye diseases, so quitting smoking can improve
+                            overall eye health. Staying hydrated is also crucial, as
+                            dehydration can lead to dry eyes. Incorporating regular
+                            exercise into your routine can improve circulation, leading to
+                            better oxygen and nutrient supply to the eyes, thereby
+                            supporting their overall function and health. By making these
+                            conscious lifestyle choices, you can significantly enhance and
+                            maintain your eye health for years to come.
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade"
-         id="newPasswordPopup"
-         tabindex="-1"
-         aria-labelledby="newPasswordPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="newPasswordPopupLabel">
-                        Create New Password
-                    </h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="newPasswordForm">
-                        <div class="mb-3">
-                            <label for="new_password" class="form-label fw-bold">New Password</label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="new_password"
-                                   aria-describedby="newPasswordHelp"
-                                   placeholder="Enter your new password"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirm_password" class="form-label fw-bold">Confirm Password</label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="confirm_password"
-                                   aria-describedby="confirmPasswordHelp"
-                                   placeholder="Confirm your new password"
-                                   required />
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">
-                            Set New Password
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEyeAdvice">
+                        <button class="accordion-button collapsed main-btn fs-4 p-3 rounded"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseEyeAdvice"
+                                aria-expanded="false"
+                                aria-controls="collapseEyeAdvice">
+                            Limit Screen Time and Practice the 20-20-20 Rule
                         </button>
-                    </form>
+                    </h2>
+                    <div id="collapseEyeAdvice"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingEyeAdvice"
+                         data-bs-parent="#eyeCareAccordion">
+                        <div class="accordion-body">
+                            Prolonged use of computers, smartphones, and other digital
+                            devices can lead to digital eye strain, characterized by dry
+                            eyes, blurred vision, and headaches. To reduce eye strain,
+                            follow the 20-20-20 rule: every 20 minutes, take a 20-second
+                            break and look at something 20 feet away. Adjusting your
+                            screen to be at eye level, reducing glare with appropriate
+                            lighting, and using anti-reflective screen protectors can also
+                            help minimize strain on your eyes.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade"
-         id="registrationPopup"
-         tabindex="-1"
-         aria-labelledby="registrationPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="registrationPopupLabel">Sign Up</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="registrationForm" class="registration_form">
-                        <div class="mb-3">
-                            <label for="reg_firstName" class="form-label fw-bold">First Name</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="reg_firstName"
-                                   aria-describedby="firstNameHelp"
-                                   placeholder="Enter your first name"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="reg_lastName" class="form-label fw-bold">Last Name</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="reg_lastName"
-                                   aria-describedby="lastNameHelp"
-                                   placeholder="Enter your last name"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="reg_email" class="form-label fw-bold">Email address</label>
-                            <input type="email"
-                                   class="form-control"
-                                   id="reg_email"
-                                   aria-describedby="emailHelp"
-                                   placeholder="Enter your email"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="dateOfBirth" class="form-label fw-bold">Date of Birth</label>
-                            <input type="date"
-                                   class="form-control"
-                                   id="dateOfBirth"
-                                   required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="gender" class="form-label fw-bold">Gender</label>
-                            <div class="form-check">
-                                <input class="form-check-input"
-                                       type="radio"
-                                       name="gender"
-                                       id="male"
-                                       value="male" />
-                                <label class="form-check-label" for="male"> Male </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input"
-                                       type="radio"
-                                       name="gender"
-                                       id="female"
-                                       value="female" />
-                                <label class="form-check-label" for="female"> Female </label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="reg_password" class="form-label fw-bold">Password</label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="reg_password"
-                                   placeholder="Enter your password"
-                                   required />
-                            <div id="passwordHelp" class="form-text">
-                                Password must be at least 8 characters long, including a
-                                combination of uppercase and lowercase letters, numbers, and
-                                symbols.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label fw-bold">Confirm Password</label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="confirmPassword"
-                                   placeholder="Confirm your password"
-                                   required />
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox"
-                                   class="form-check-input"
-                                   id="termsAndConditions"
-                                   required />
-                            <label class="form-check-label" for="termsAndConditions">I agree to the Terms and Conditions</label>
-                            <a href="#">(link to Terms and Conditions)</a>
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">
-                            Sign Up
-                        </button>
-                    </form>
-                </div>
-            </div>
+        <div class="col-md-6 col-sm-12 right">
+            <img class="cover-photo img-fluid"
+                 src="~/photos/faq3.jpg"
+                 alt="Cover Photo" />
         </div>
     </div>
-
-
+</div>
 

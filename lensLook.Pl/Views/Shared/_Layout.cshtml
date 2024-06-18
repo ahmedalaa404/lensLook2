@@ -1,6 +1,4 @@
-﻿
-@model ModelLoginAndRegister
-
+﻿@model ModelLoginAndRegister
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,34 +6,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lens Look</title>
-    @* libraries *@
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/home.css" />
 
-
-
-    @* pages *@
-    <link href="~/css/home.css" rel="stylesheet" />
-
-    @* <link href="~/css/repair.css" rel="stylesheet" /> *@
-    @* online *@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet" />
+
     <link rel="icon" type="image/x-icon" href="~/photos/logo.ico">
 
 
-    @RenderSection("Linkedcss",false);
+    @RenderSection("Linkedcss", false)
 
 </head>
 
 <body>
-    <style>
-        .modal-backdrop.fade.show{
-            display:none;
-        }
-    </style>
+
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">
@@ -53,13 +41,13 @@
                            asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="index" id="AboutUs">
+                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="AboutUs" id="AboutUs">
                             About
                             Us
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
+                        <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link p-2 p-lg-3" asp-action="store" asp-controller="Home">Store</a>
@@ -67,7 +55,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link p-2 p-lg-3" asp-controller="booking" asp-action="Appointment">Appointment</a>
-                    </li> 
+                    </li>
 
 
                     <li class="nav-item dropdown p-2 p-lg-2">
@@ -96,8 +84,7 @@
 
                 <div>
 
-                    <a class="btn main-btn" id="show-login" data-bs-toggle="modal" data-bs-target="#loginPopup"
-                     >
+                    <a class="btn main-btn" id="show-login" data-bs-toggle="modal" data-bs-target="#loginPopup">
                         Login
                     </a>
 
@@ -118,57 +105,50 @@
     </nav>
 
     <!-- Main content wrapped in a content container -->
-    <div class="content">
+
         @RenderBody()
-    </div>
 
 
 
 
-
-
-
-
-
-
-    <div class="modal fade"
-         id="loginPopup"
-         tabindex="-1"
-         aria-labelledby="loginPopupLabel"
-         aria-hidden="true">
+    <!-- Login form -->
+    <div class="modal fade" id="loginPopup" tabindex="-1" aria-labelledby="loginPopupLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="loginPopupLabel">Login</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
+                
+                        <form asp-action="RegisterOrLogin" class="login_form" method="post" asp-controller="Account">
                         <div class="mb-3">
-                            <label asp-for="ModelLogin.Email" class="form-label fw-bold">Email</label>
-                            <input asp-for="ModelLogin.Email" class="form-control" placeholder="Enter your Email" required />
-                            <span asp-validation-for="ModelLogin.Email" class="text-danger"></span>
+                            <label for="log_username" class="form-label fw-bold">Username</label>
+                            <input type="text" class="form-control" id="log_username" aria-describedby="usernameHelp"
+                                   placeholder="Enter your username" asp-for="@Model.ModelLogin.Email"  required />
                         </div>
                         <div class="mb-3">
-                            <label asp-for="ModelLogin.Password" class="form-label fw-bold">Password</label>
-                            <input asp-for="ModelLogin.Password" class="form-control" placeholder="Enter your password" required />
-                            <span asp-validation-for="ModelLogin.Password" class="text-danger"></span>
+                            <label for="log_password" class="form-label fw-bold">
+                                Password
+                            </label>
+                            <input type="password" asp-for="@Model.ModelLogin.Password" class="form-control" id="log_password" placeholder="Enter your password"
+                                   required />
                         </div>
                         <div class="mb-3 form-check">
-                            <input asp-for="ModelLogin.RememberMe" class="form-check-input" />
-                            <label asp-for="ModelLogin.RememberMe" class="form-check-label">Remember Me</label>
+                            <input type="checkbox" class="form-check-input" id="rememberMe"  asp-for="@Model.ModelLogin.RememberMe"/>
+                            <label class="form-check-label" for="rememberMe">Remember Me</label>
+
                         </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">Login</button>
-                        <a asp-action="ForgetPassword" asp-controller="account" class="btn btn-danger">Forgot Password?</a>
+                        <button type="submit" class="btn main-btn ms-0 mb-3">
+                            Login
+                        </button>
+                        <a href="#" class="text-decoration-none" id="forgotPasswordLink" data-bs-toggle="modal" data-bs-target="#forgotPasswordPopup">
+                            Forgot
+                            Password?
+                        </a>
                         <hr />
-
-
+                       
                     </form>
-                    <p>Don't have an account? <a asp-action="Register">Sign Up</a></p>
-
                 </div>
             </div>
         </div>
@@ -176,23 +156,45 @@
 
 
 
+    <!-- reset password -->
+    <div class="modal fade" id="forgotPasswordPopup" tabindex="-1" aria-labelledby="forgotPasswordPopupLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="forgotPasswordPopupLabel">
+                        Forgot Password
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm" asp-action="RegisterOrLogin" class="login_form" method="post" asp-controller="Account">
+                        <div class="mb-3">
+                            <label for="forgot_email" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control" id="forgot_email" aria-describedby="emailHelp"
+                                   placeholder="Enter your email address" asp-for="@Model.ForgetPassword.Email" required />
+                        </div>
+                        <button type="submit" class="btn main-btn ms-0 mb-3">
+                            Send Reset Link
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="modal fade"
-         id="registrationPopup"
-         tabindex="-1"
-         aria-labelledby="registrationPopupLabel"
+
+    <!-- sign Up form -->
+    <div class="modal fade" id="registrationPopup" tabindex="-1" aria-labelledby="registrationPopupLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="registrationPopupLabel">Sign Up</h3>
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-action="RegisterOrLogin" method="post" asp-controller="Account">
+                    <form id="registrationForm" class="registration_form" asp-action="RegisterOrLogin" method="post" asp-controller="Account">
                         <div class="mb-3">
                             <label asp-for="ModelRegister.FirstName" class="form-label fw-bold">First Name</label>
                             <input asp-for="ModelRegister.FirstName" class="form-control" placeholder="Enter your first name" required />
@@ -242,34 +244,14 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <footer class="footer">
-        <div>
+        <div class="">
             <div class="row">
                 <div class="col ms-5">
                     <img src="~/photos/white logo.png" alt="Company Logo" class="img-fluid mb-3" />
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla sapien, aliquam euismod
-                        magna vel, egestas faucibus quam.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                        nulla sapien, aliquam euismod magna vel, egestas faucibus quam.
                     </p>
                     <div class="d-flex justify-content-center icons">
                         <a href="#"><i class="fa-brands fa-facebook me-4 fs-1"></i></a>
@@ -282,9 +264,9 @@
                     <h4>Menu Items</h4>
                     <hr />
                     <ul style="list-style: none">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="index">About Us</a></li>
-                        <li><a asp-controller="Service" asp-action="Service">Services</a></li>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about us .html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
                         <li><a href="store.html">Store</a></li>
                         <li><a href="appointment.html">Appointment</a></li>
                     </ul>
@@ -293,16 +275,18 @@
                     <h4>Support Links</h4>
                     <hr />
                     <ul style="list-style: none">
-                        <li><a asp-controller="Home" asp-action="OurDoctors">Our Doctors</a></li>
-                        <li><a asp-controller="Home" asp-action="FAQ">FAQs</a></li>
-                        <li><a asp-controller="Home" asp-action="Reviews">Reviews</a></li>
-                        <li><a asp-action="DoctorRegestratoin" asp-controller="Account">Join As A Doctor</a></li>
+                        <li><a href="our doctors.html">Our Doctors</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="join as a doctor.html">Join As A Doctor </a></li>
                     </ul>
                 </div>
                 <div class="col text-center">
                     <h4>Contact Us</h4>
                     <hr />
-                    <p>123 Main Street<br />Anytown, CA 12345<br />555-555-5555<br />info@company.com</p>
+                    <p>
+                        123 Main Street<br />Anytown, CA 12345<br />555-555-5555<br />info@company.com
+                    </p>
                 </div>
             </div>
             <hr />
@@ -313,18 +297,22 @@
             </div>
         </div>
     </footer>
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    @* libraries *@
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/all.min.js"></script>
+    <script src="~/js/home.js"></script>
+    @await RenderSectionAsync("ValidateSection", required: false)
+
+
+
+
 
 
 

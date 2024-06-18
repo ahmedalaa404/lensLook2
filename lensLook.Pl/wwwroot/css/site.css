@@ -1,71 +1,100 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿:root {
+    --myblue: #033373;
+    --mylight: #17b8da;
+    --mywhite: white;
+    --transition: 0.3s ease-in-out;
+    --animation: left_right 2s ease-in-out;
+    --bottom_up: bottomUp 2s ease-in-out forwards;
+    --left_right: left_right 2s ease-in-out forwards;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+
+
+.serv_parent {
+    margin-top: 100px;
+    margin-bottom: 200px;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.card-text {
+    color: var(--mytextblack); /* Assuming you have this color variable */
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.card-body .main-btn {
+    width: 100%;
+    margin-left: 0px;
+    font-size: 20px;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.serv_parent > h3 {
+    color: var(--mylight);
+    animation: var(--left_right);
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+@keyframes left_right {
+    100% {
+        transform: translatex(0%);
+        -webkit-transform: translatex(0%);
+        -moz-transform: translatex(0%);
+        -ms-transform: translatex(0%);
+        -o-transform: translatex(0%);
+    }
+
+    0% {
+        transform: translatex(100%);
+        -webkit-transform: translatex(100%);
+        -moz-transform: translatex(100%);
+        -ms-transform: translatex(100%);
+        -o-transform: translatex(100%);
+    }
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.col-md-5 > h1 {
+    color: var(--myblue);
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.col-md-6 > p {
+    color: var(--myblue);
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+.my-card-hover {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0.7;
+    transform: scaley(0.9) scale(0.83);
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+    .my-card-hover:hover {
+        opacity: 1;
+        box-shadow: 0 8px 16px var(--myblue);
+    }
+
+.card-group {
+    margin-top: -30px;
+    animation: var(--bottom_up);
+    -webkit-animation: var(--bottom_up);
+}
+
+.card-body h5 {
+    font-size: 40px;
+    color: var(--myblue);
+}
+
+.card-body p {
+    font-size: 20px;
+    color: var(--mylight);
+}
+
+@keyframes bottomUp {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }

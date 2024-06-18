@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\JoinAsDoctor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Views\PartialView\_CheckIfAuthOrNot.cshtml" />
   </ItemGroup>
 
@@ -77,6 +81,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lensLook.Bll\lensLook.Bll.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_LayoutForLoginAndRegister.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

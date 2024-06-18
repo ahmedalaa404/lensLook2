@@ -1,10 +1,4 @@
-﻿@{
-    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-}
-
-@inject IBasketRepo BasketRepo;
-
-
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,31 +10,35 @@
     @* libraries *@
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/all.min.css" />
+
+
+
     @* pages *@
     <link href="~/css/home.css" rel="stylesheet" />
-    <link href="~/css/services.css" rel="stylesheet" />
+
     @* <link href="~/css/repair.css" rel="stylesheet" /> *@
     @* online *@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
           rel="stylesheet" />
-    <link href="~/css/online appointment.css" rel="stylesheet" />
-
     <link rel="icon" type="image/x-icon" href="~/photos/logo.ico">
 
-    @RenderSection("Linkedcss", false)
 
+    @RenderSection("Linkedcss",false)
 
 </head>
 
-
-
 <body>
+    <style>
+        .modal-backdrop.fade.show{
+            display:none;
+        }
+    </style>
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                <img src="~/photos/logo1.png" alt="" />
+                <img src="~/photos/logo.png" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -63,15 +61,13 @@
                         <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link p-2 p-lg-3 d-flex" asp-action="store" asp-controller="Home">Store</a>
-
+                        <a class="nav-link p-2 p-lg-3" asp-action="store" asp-controller="Home">Store</a>
                     </li>
-                    @if(User.IsInRole("Doctor"))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link p-2 p-lg-3" asp-action="Appointment" asp-controller="booking">Appointment</a>
-                        </li>
-                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link p-2 p-lg-3" asp-controller="booking" asp-action="Appointment">Appointment</a>
+                    </li> 
+
 
                     <li class="nav-item dropdown p-2 p-lg-2">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -97,45 +93,41 @@
                 </ul>
 
 
-                <div class="d-flex justify-context-center">
+                <div>
 
-                    <div class="px-3">
-                        <a type="button" class="btn btn-primary position-relative" asp-action="Cart" asp-controller="Basket">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <span> @BasketRepo.GetCountBasketItems(userId)</span>
-                            </span>
-                        </a>
-                    </div>
-
-                    <div>
-                        <a asp-action="SignOut" asp-controller="account" class="btn btn-danger">
-                            logout
-                            <i class="fa-solid fa-right-from-bracket fa-lg"></i>
-
-                        </a>
-                    </div>
-
-
-                    </di>
+                    <a class="btn main-btn" id="show-login" data-bs-toggle="modal" data-bs-target="#loginPopup"
+                     >
+                        Login
+                    </a>
 
 
 
-
-
-
-
-
-
+                    <button class="btn main-btn" data-bs-toggle="modal" data-bs-target="#registrationPopup">
+                        Sign Up
+                    </button>
                 </div>
+
+
+
+
+
+
             </div>
+        </div>
     </nav>
 
     <!-- Main content wrapped in a content container -->
     <div class="content">
-
         @RenderBody()
     </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -176,11 +168,9 @@
                     <ul style="list-style: none">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="index">About Us</a></li>
-                        <li>
-                            <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
-                        </li>
+                        <li><a asp-controller="Service" asp-action="Service">Services</a></li>
                         <li><a href="store.html">Store</a></li>
-                        <li><a  >Appointment</a></li>
+                        <li><a href="appointment.html">Appointment</a></li>
                     </ul>
                 </div>
                 <div class="col text-center column-gap-2">
@@ -190,7 +180,7 @@
                         <li><a asp-controller="Home" asp-action="OurDoctors">Our Doctors</a></li>
                         <li><a asp-controller="Home" asp-action="FAQ">FAQs</a></li>
                         <li><a asp-controller="Home" asp-action="Reviews">Reviews</a></li>
-                        
+                        <li><a asp-action="DoctorRegestratoin" asp-controller="Account">Join As A Doctor</a></li>
                     </ul>
                 </div>
                 <div class="col text-center">
@@ -210,29 +200,23 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @* libraries *@
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/all.min.js"></script>
-    @* pages *@
-    <script src="~/js/Home.js"></script>
-    <script src="~/js/AboutUs.js"></script>
-    <script src="~/js/FAQ.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-    @* font-awesome *@
-    <script src="~/font-awesome/js/all.min.js"></script>
-    <script src="~/font-awesome/js/all.js"></script>
-    <script src="~/font-awesome/js/brands.min.js"></script>
-    <script src="~/font-awesome/js/brands.js"></script>
-    <script src="~/font-awesome/js/conflict-detection.min.js"></script>
-    <script src="~/font-awesome/js/conflict-detection.js"></script>
-    <script src="~/font-awesome/js/fontawesome.min.js"></script>
-    <script src="~/font-awesome/js/fontawesome.js"></script>
-    <script src="~/font-awesome/js/regular.min.js"></script>
-    <script src="~/font-awesome/js/regular.js"></script>
-    <script src="~/font-awesome/js/solid.min.js"></script>
-    <script src="~/font-awesome/js/solid.js"></script>
-    <script src="~/font-awesome/js/v4-shims.min.js"></script>
-    <script src="~/font-awesome/js/v4-shims.js"></script>
+
+
+
+
+
     <!-- @await RenderSectionAsync("Scripts", required: false) -->
 </body>
 

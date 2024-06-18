@@ -6,12 +6,12 @@
 @{
     Layout = "_Layout";
 }
-
+    <link rel="stylesheet" href="~/css/JoinAsDoctor.css" />
 
 <!-- join as a doctor -->
 <div class="container doc_regester">
     <h1 class="mb-5">Doctor Registration</h1>
-    <form asp-action="DoctorRegestratoin" method="post" id="doctorRegistrationForm" enctype="multipart/form-data">
+    <form asp-action="logim" asp-controller="account" method="post" id="doctorRegistrationForm" enctype="multipart/form-data">
         <div class="row mb-3">
             <label asp-for="ModelRegister.FirstName" class="col-sm-2 col-form-label">First Name:</label>
             <div class="col-sm-9">

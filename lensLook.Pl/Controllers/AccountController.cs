@@ -42,6 +42,10 @@ namespace lensLook.Pl.Controllers
                 {
                    await Login(Model.ModelLogin);
                 }
+                else if (Model.ForgetPassword != null)
+                {
+                await    SendEmail(Model.ForgetPassword);
+                }
                 else
                 {
                     await Register(Model.ModelRegister);
@@ -132,7 +136,7 @@ namespace lensLook.Pl.Controllers
                         var Resulate = await _signManager.PasswordSignInAsync(User, UserLogin.Password, UserLogin.RememberMe, false);
                         if (Resulate.Succeeded)
                         {
-                            return RedirectToAction("Index", "Employee");
+                            return RedirectToAction("Index", "home");
                         }
                     }
                     ModelState.AddModelError(string.Empty, "Password is not Correct Yet");
