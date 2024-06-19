@@ -350,7 +350,7 @@ namespace lensLook.Pl.Controllers
                 var DuplicateEmail = await _usermanager.FindByEmailAsync(Model.ModelRegister.Email);
                 if(DuplicateEmail!=null)
                 {
-                    ModelState.AddModelError(string.Empty, "U Have Account Before ");
+                    ModelState.AddModelError(string.Empty, "Emil already exist");
                     return View();
 
                 }
