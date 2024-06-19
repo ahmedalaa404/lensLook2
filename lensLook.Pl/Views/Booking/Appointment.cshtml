@@ -28,10 +28,16 @@
             <p>@item.PhoneNumber</p>
             <p>@item.Reason</p>
         </div>
-        <div class="content-buttons">
-            <a type="submit" asp-route-id="@item.BookingId"  asp-action="AcceptRequest"  asp-controller="booking" class="main-btn">Approve</a>
-                <a type="submit" asp-route-id="@item.BookingId" asp-action="RejectRequest" asp-controller="booking" class="main-btn">Decline</a>
-        </div>
+
+        @if(item.Status==BookingStatus.Pending)
+            {
+                <div class="content-buttons">
+                    <a type="submit" asp-route-id="@item.BookingId" asp-action="AcceptRequest" asp-controller="booking" class="main-btn">Approve</a>
+                    <a type="submit" asp-route-id="@item.BookingId" asp-action="RejectRequest" asp-controller="booking" class="main-btn">Decline</a>
+                </div>
+            }
+            
+
     </div>
     }
 

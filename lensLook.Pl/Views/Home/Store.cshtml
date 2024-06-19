@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
 
     var Products = ViewBag.AllProducts;
     if (User.Identity.IsAuthenticated)
@@ -15,19 +14,261 @@
 }
 
 
-@section Linkedcss{
-    <link rel="stylesheet" href="~/css/store.css" />
+@section Linkedcss {
+   <style>
+       @@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    outline: 0;
+    transition: .3s;
 }
 
 
+h2 {
+    font-weight: bolder;
+    text-align: center;
+}
 
+.cart-button-style {
+    border-style: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10em;
+    padding: 1em 1em;
+    margin: 0.5em;
+    background: #7762ff;
+    color: white;
+    transition: background .5s;
+    border-radius: 4px; 
+}
 
+.cart-button-style-two {
+    border-style: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10em;
+    padding: 1em 1em;
+    margin: 0.5em;
+    background: white;
+    color: #7762ff;
+    transition: background .5s;
+    border-radius: 4px; 
+}
 
+.cart-button-style:hover, #checkout:hover, #apply-promo:hover, .keep-shopping:hover {
+    background: #62ff8e;
+    color: white;
+}
 
+.cart-button-style:active, #checkout:active, #apply-promo:active, .keep-shopping:active {
+    background: #ff6884;
+    color: white;
+}
 
+.products {
+    float: left;
+    width: 23%;
+    margin: 3% 1%;
+    text-align: center;
+    padding: 0 0 1% 0;
+}
 
+.products img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 
+@@media screen and (max-width: 980px) {
+    .products {
+        width: 30%;
+        text-align: center;
+        margin: 1.66%;
+    }
+}
 
+@@media screen and (max-width: 790px) {
+    .products {
+        width: 47%;
+        margin: 1% 1%;
+    }
+    
+    #shop {
+        margin: 5% 1%;
+    }
+}
+
+@@media screen and (max-width: 600px) {
+    .products {
+        width: 100%;
+    }
+    
+    #shop {
+        margin: 2% 0;
+    }
+}
+
+#shop::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.add-to-cart {
+    display: block;
+    margin: 1% auto;
+    border-style: none;
+    width: 10em;
+    height: 3em;
+    background: #62ff8e;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.add-to-cart:hover {
+    background: #7762ff;
+}
+
+.add-to-cart:active {
+    background: #62ff8e;
+}
+
+.slider {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    overflow: hidden;
+    background: white;
+    transition: all 1s;
+}
+
+.slider.close {
+    top: 100vh;
+    height: 0;
+}
+
+#amount-controls {
+    background: white;
+    top: 90;
+    right: 0;
+}
+
+#cart-amount-wrapper {
+    background: white;
+    padding: 1.5% 0 .5% 35%;
+    border-radius: 10px;
+}
+
+#cart {
+    text-align: left;
+    margin: 3.5em 0.5em;
+    padding: 0.5% 1.5%;
+    overflow-y: scroll;
+}
+
+#total::before, #subtotal::before, .product-price::before, .cart-product-price::before, .cart-updated-product-price::before, #discountAmt::before {
+    content: '$';
+}
+
+#cart #quantity-value {
+    width: 45%;
+}
+
+.name-col {
+  width: 40%;
+}
+.quantity-col {
+  width: 5%;
+}
+.price-col {
+  width: 15%;
+}
+
+.updated-price-col {
+    width: 25%;
+}
+
+.update-col {
+    width: 10%
+}
+
+.remove-col {
+  width: 5%;
+}
+
+#update {
+    border-style: none;
+    text-transform: uppercase;
+    padding: 2% 12px;
+    width: 100%;
+    height: 30px;
+    background: #56ff6a;
+    color: white;
+    border-radius: 10px;
+}
+
+#update:hover {
+    background: #f0ffe6;
+    color: #56ff6a;
+}
+
+#update:active {
+    background: #56f46a;
+    color: white;
+}
+
+.remove {
+    border-style: none;
+    font-weight: bolder;
+    padding: 2% 2.5%;
+    width: 100%;
+    height: 30px;
+    background: #ff7b67;
+    color: #fff1e7;
+    border-radius: 10px;
+}
+
+.remove:hover {
+    background: #fff1e7;
+    color: #ff7b67;
+}
+
+.remove:active {
+    background: #ff7b67;
+    color: #f5f1e7;
+}
+
+#cart-products-wrapper {
+    overflow-y: auto;
+}
+
+#cart-amount-wrapper {
+    overflow-x: auto;
+}
+
+#promo {
+    width: 10em;
+    padding: 1em 1em;
+    transition: background .5s;
+    border-radius: 4px;
+}
+
+#apply-promo, #checkout, .keep-shopping {
+    border-style: none;
+    width: 10em;
+    padding: 1em 1em;
+    background: #7762ff;
+    color: white;
+    transition: background .5s;
+    border-radius: 4px;
+}
+   </style>
+}
 
 
 <div class="container-fluid">
@@ -42,7 +283,7 @@
             <div class="carousel-item active" data-bs-interval="10000">
                 <div class="row">
                     <div class="col-lg-4">
-                        <img src="https://i.pinimg.com/564x/dc/0f/ee/dc0fee5cfa137a568e0bb2ff43148250.jpg" class="d-block w-100" alt="...">
+                        <img src="https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100" alt="...">
                     </div>
                     <div class="col-lg-4">
                         <img src="https://i.pinimg.com/564x/a6/88/28/a68828c287251f6cee036656fc4ce4df.jpg" class="d-block w-100" alt="...">
@@ -51,11 +292,8 @@
                         <img src="https://i.pinimg.com/564x/72/a7/01/72a70191770fd205ac335f756dd33728.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
-                
-@*                 <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div> *@
+
+
             </div>
             <div class="carousel-item" data-bs-interval="2000">
                 <div class="row">
@@ -71,12 +309,7 @@
 
                     </div>
                 </div>
-                
-                
-@*                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div> *@
+
             </div>
             <div class="carousel-item">
                 <div class="row">
@@ -92,12 +325,6 @@
 
                     </div>
                 </div>
-                
-@*                 
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div> *@
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -115,86 +342,358 @@
 </div>
 
 
+<div class="container">
 
 
 
 
-<body>
-    <main class="main bd-grid">
-                        @foreach (var item in @Products as IEnumerable<Product>)
-        {
-            <article class="card">
-                <div class="card__img">
-                <img src="@item.PictureUrl" alt="">
+
+
+    <div id="shop">
+      @foreach (var item in @Products as IEnumerable<Product>)
+    {
+
+
+            <div class="products ios apple">
+                <img class="product-image" src="@item.PictureUrl">
+                <p class="product-name">@item.Name</p>
+                <p class="product-description">A 5.5" beast of processing power from Apple.</p>
+                <p class="product-price" value='999'>999</p>
+                <a class="btn btn-outline-primary" asp-action="AddToCart" asp-controller="Basket" class="btn" asp-route-Product="@item.Id" id='test'>ADD TO CART</a>
             </div>
-            <div class="card__name">
-                <p>@item.Name</p>
-            </div>
-            <div class="card__precis">
+            
 
-                <div>
-                    <span class="card__preci card__preci--now">@item.Price</span>
-                </div>
+
+        }
+    </div>
+</div>
 
 
 
-                    <a asp-action="AddToCart" asp-controller="Basket" class="btn" asp-route-Product="@item.Id">
-                            <ion-icon name="cart-outline"></ion-icon>
 
-                        </a>
-             
-            </div>
-        </article>
+
+
+
+
+
+
+
+
+
+<script>
+    // Cart Toggle
+    let cartToggle = document.getElementById('cart-button');
+    let cartToggleCount = 0;
+    let cartWrapper = document.getElementById('cart-wrapper');
+    let cartElement = document.getElementById('cart');
+    let subtotal = document.getElementById('subtotal');
+    let total = document.getElementById('total');
+    let applyPromoButton = document.querySelector('#apply-promo');
+    let addToCartButton = document.querySelectorAll('.add-to-cart');
+
+    applyPromoButton.addEventListener('click', applyPromo);
+
+    let cartProductQuantity = "<input name='quantity' id='quantity-value' type='number' value='1'>";
+
+    let productRemove = "<button class='remove' onclick='removeFromCart(this)'>X</button>";
+
+    let updatedPrice;
+    let added = [], itemClass = {};
+
+    // Capture HTML cart body
+    var cartTableBody = document.getElementById('cart-table-body');
+
+    // Cart object model
+    let cart = {
+        'items': [],
+        "subtotal": 0,
+        "iphoneDis": 0,
+        "androidDis": 0,
+        "Off5": 0,
+        "finalDis": 0,
+        'total': 0
+    };
+
+    for (let button of addToCartButton) {
+        button.addEventListener('click', addToCart);
+    }
+
+
+    $('.trigger, .keep-shopping').click(function () {
+        $('.slider').toggleClass('close');
+    });
+
+    // Adding products to the shopping cart
+    function addToCart(event) {
+
+        if (added.includes(event.target.parentElement.id)) {
+            duplicateId = '#' + event.target.parentElement.id;
+
+            cartTableBody.querySelector(duplicateId).querySelector('#quantity-value').value++;
+            return;
         }
 
+        // Capture product
+        let product = event.target.parentNode;
+        let productId = product.id;
+        added.unshift(productId);
+        let productName = product.querySelector('.product-name').innerHTML;
+        let productPrice = product.querySelector('.product-price').innerHTML.replace(/[^\d.-]/g, '');
+        productPrice = Number(productPrice);
+        let productUpdatedPrice = productPrice;
+
+        thisClass = product.classList.value.split(' ');
+        /*
+            thisClass = thisClass.replace('products ', '');
+        */
+
+        itemClass[productId] = thisClass;
+
+        // Add item to cart javascript model
+        cart.items.push({
+            'product': productId,
+            'productName': productName,
+            'productPrice': productPrice,
+            'productUpdatedPrice': productUpdatedPrice,
+        });
+
+
+        // Add a new row for each product
+        let productRow = document.createElement('tr');
+        productRow.setAttribute('id', productId);
+        cartTableBody.appendChild(productRow);
+
+        // Add five columns to product row
+        for (let num = 0; num <= 6; num++) {
+            let newColumn = document.createElement('td');
+            productRow.appendChild(newColumn);
+        }
+
+        // Build HTML cart
+        productRow.childNodes[0].innerHTML = productName;
+        productRow.childNodes[1].innerHTML = cartProductQuantity;
+        productRow.childNodes[1].setAttribute('id', 'quantity');
+        productRow.childNodes[2].innerHTML = productPrice;
+        productRow.childNodes[2].setAttribute('id', 'product-price');
+        productRow.childNodes[2].setAttribute('class', 'cart-product-price');
+        productRow.childNodes[3].innerHTML = productPrice;
+        productRow.childNodes[3].setAttribute('id', 'updated-product-price');
+        productRow.childNodes[3].setAttribute('class', 'cart-updated-product-price');
+        productRow.childNodes[4].innerHTML = "<button id='update' onclick='updateQuantity(this)'>Update</button>"
+        productRow.childNodes[5].innerHTML = productRemove;
 
 
 
+        updateSubtotal();
+        updateTotal();
 
-    </main>
+        $('.slider').toggleClass('close');
 
-    <!-- ICONS -->
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-</body>
+    }
+
+    function removeFromCart(event) {
+        let parentRow = event.parentNode.parentNode;
+        let parentBody = parentRow.parentNode;
+        let parentRowId = parentRow.id;
+        parentBody.removeChild(parentRow);
+
+        total.value = (Number(total.value) - parentRow.querySelector('#updated-product-price').innerHTML).toFixed(2);
+
+        var index = added.indexOf(parentRowId);
+        if (index !== -1) {
+            added.splice(index, 1);
+        }
+
+        for (let item of cart.items) {
+            if (item.product === parentRowId) cart.items.splice(item, 1);
+        }
+
+        var subtotalRow = document.getElementById("subtotal");
+        var subtotalRowParent = subtotalRow.parentNode;
+        for (let node of subtotalRowParent.childNodes) {
+            if (node.id === "discountRow") {
+                var discountRow = document.getElementById("discountRow");
+
+                subtotalRowParent.removeChild(discountRow);
+            }
+
+        }
+
+        cart.finalDis = 0;
+        updateSubtotal();
+        updateTotal();
+
+    }
 
 
+    function updateQuantity(event) {
+        let parentRow = event.parentNode.parentNode;
+        let parentRowId = parentRow.id;
+        var inputQuantity, productPrice, updatedPrice, totalPrice;
 
+        for (let node of parentRow.childNodes) {
+            switch (node.id) {
+                case 'quantity':
+                    inputQuantity = node.firstChild;
+                    break;
 
+                case 'product-price':
+                    productPrice = Number(node.innerHTML);
+                    break;
 
+                case 'updated-product-price':
+                    updatedPrice = node;
+                    totalPrice = Number(node.innerHTML);
+                    console.log(totalPrice);
+            }
+        }
 
+        let inputQuantityValue = (Number(inputQuantity.value)).toFixed(2);
 
-@* @{
+        if (inputQuantityValue <= 0) removeFromCart(event);
 
-    <div class="container">
-        <div class="row">
+        totalPrice = inputQuantity.value * productPrice;
+        updatedPrice.innerHTML = totalPrice;
 
-                @foreach (var item in @Products as IEnumerable<Product>)
-                {
-                <div class="col-lg-4">
-                    <form asp-controller="Basket" asp-action="AddToCart">
-                        <div class="col-lg-4 p-4">
-                            <div class="card" style="width: 18rem;">
-                                <input class="" name="Product" hidden value="@item.Id" />
-                                <img class="card-img-top" src="@item.Image" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">@item.Name</h5>
-                                    <p class="card-text">@item.Description</p>
-                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        for (let item of cart.items) {
+            if (item.product === parentRowId) item.productUpdatedPrice = totalPrice;
+        }
 
+        updateSubtotal();
+        updateTotal();
+        console.log(cart);
+    }
 
+    function applyPromo(event) {
+        let promoInputValue = document.getElementById('promo').value.toUpperCase();
+        let promoInput = document.getElementById('promo');
+
+        switch (promoInputValue) {
+            case 'IPHONEX15':
+                let price = 0;
+                for (item of cart.items) {
+                    if (item.product.includes('iphone-x')) {
+                        price += item.productPrice;
+                        let pro15Dis = (price * 15) / 100;
+
+                        cart.iphoneDis = pro15Dis;
+                        cart.finalDis = cart.iphoneDis.toFixed(2);
+                        addDiscountAmount();
+                    }
                 }
-   
-        </div>
 
-    </div>
-}
- *@
+                alert('15% Off the iPhone X!');
+                break;
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            case 'ANDROID10':
+                for (item of cart.items) {
+                    if (isIncluded('android', itemClass[item.product])) {
+                        let product = cartTableBody.querySelector('#' + item.product);
+                        var productUpdatedPrice = product.querySelector('#updated-product-price').innerHTML;
+
+                        productUpdatedPrice = (Number(productUpdatedPrice) * 10) / 100;
+
+                        product.querySelector('#updated-product-price').innerHTML = (Number(product.querySelector('#updated-product-price').innerHTML)) - productUpdatedPrice;
+
+                    }
+                }
+
+                cart.androidDis = productUpdatedPrice;
+                cart.finalDis = cart.androidDis.toFixed(2);
+
+                addDiscountAmount();
+
+                alert('10% Off all Android products!');
+
+                break;
+
+            case '5OFFEVERYTHING':
+                let subtotalDiscount = (cart.subtotal * 5) / 100;
+
+                cart.Off5 = subtotalDiscount;
+                cart.finalDis = cart.Off5.toFixed(2);
+                addDiscountAmount();
+
+                alert('5% Off the price of all products combined!');
+                break;
+
+            case '':
+                alert('Please enter a discount code!');
+
+                break;
+
+            default:
+                alert('Invalid Code!');
+        }
+
+        function addDiscountAmount() {
+            var orderTotalRow = document.getElementById("total-wrapper");
+            var orderTotalRowParent = orderTotalRow.parentNode;
+            var newRow = document.createElement("tr");
+            orderTotalRowParent.insertBefore(newRow, orderTotalRow);
+            newRow.setAttribute("id", "discountRow");
+            for (var j = 0; j < 2; j++) {
+                var newTd = document.createElement("td");
+                newRow.appendChild(newTd);
+            }
+            newRow.childNodes[0].innerHTML = "Discount:";
+            newRow.childNodes[1].innerHTML = cart.finalDis;
+            newRow.childNodes[1].setAttribute("id", "discountAmt");
+
+            updateSubtotal();
+            updateTotal();
+        }
+    }
+
+    function updateSubtotal() {
+        cart.subtotal = 0;
+
+        for (let item of cart.items) {
+            cart.subtotal += item.productUpdatedPrice;
+        }
+
+        subtotal.innerHTML = cart.subtotal.toFixed(2);
+    }
+
+    function updateTotal() {
+        cart.total = 0;
+        cart.total += (cart.subtotal - cart.finalDis);
+        total.innerHTML = cart.total.toFixed(2);
+    }
+
+    function isIncluded(input, words) {
+        try {
+            if (!input || words.length == 0) throw 'Invalid Input or words is empty';
+        }
+
+        catch (err) {
+            return `Please provide valid input or add a word to check for`;
+        }
+
+        let allowed = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        let count = 0;
+
+        for (let index = 0; index < input.length; index++) {
+            if (!allowed.includes(input[index])) {
+                input = input.replace(input[index], ' ');
+            }
+        }
+
+        input = input.split(' ');
+
+        for (let i = 0; i < input.length; i++) {
+            for (let c = 0; c < 3; c++) {
+                if (input[i] == ' ' || input[i] == '') {
+                    input.splice(i, 1);
+                }
+            }
+        }
+
+        for (let word in input) {
+            for (let word2 in words) {
+                if (input[word] == words[word2]) return true;
+            }
+        }
+        return false;
+    }
+</script>
