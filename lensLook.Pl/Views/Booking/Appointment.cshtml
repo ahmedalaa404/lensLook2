@@ -1,10 +1,60 @@
 ﻿@model List<Booking>
-
+@inject IServicesRepo _Servies
 @{
 
 
     Layout = "_LayoutWithAuth";
 }
+
+
+
+
+<link rel="stylesheet" href="~/css/Drappointment.css" />
+
+<div class="container mt-5 orders-container rounded">
+    <h1 class="head text-center">All Orders</h1>
+    <!-- div 1 -->
+
+
+
+                @foreach (var item in Model)
+    {
+    <div class="content rounded align-items-center">
+        <div class="content-details">
+            <h2>@item.FullName</h2>
+                <p>@_Servies.GetById(item.ServiceId).BookingType.ToString()</p>
+            <p>@item.RequestDate</p>
+            <p>@item.AppointmentDate</p>
+            <p>@item.PhoneNumber</p>
+            <p>@item.Reason</p>
+        </div>
+        <div class="content-buttons">
+            <a type="submit" asp-route-id="@item.BookingId"  asp-action="AcceptRequest"  asp-controller="booking" class="main-btn">Approve</a>
+                <a type="submit" asp-route-id="@item.BookingId" asp-action="RejectRequest" asp-controller="booking" class="main-btn">Decline</a>
+        </div>
+    </div>
+    }
+
+
+
+    <hr style="color: white" />
+
+
+
+
+
+
+    <div class="show-table-div text-center">
+        <a href="">
+            <button type="button" class="main-btn show-table-btn">
+                Show Orders Table
+            </button>
+        </a>
+    </div>
+</div>
+
+
+@*
 
 
 <div class="container" style="max-width:none">
@@ -46,4 +96,4 @@
 
         </tbody>
     </table>
-</div>
+</div> *@

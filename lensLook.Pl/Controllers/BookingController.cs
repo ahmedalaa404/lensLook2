@@ -35,6 +35,7 @@ namespace lensLook.Pl.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Online()
         {
             return View();
@@ -94,6 +95,9 @@ namespace lensLook.Pl.Controllers
         {
             return UpdateRequestStatus(id, BookingStatus.Rejected);
         }
+
+
+
 
         private IActionResult HandleBooking(BookingCreateVm model, string serviceName)
         {

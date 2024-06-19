@@ -11,7 +11,7 @@ namespace lensLook.Pl.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductRepo _ProductRepo;
 
-        public HomeController(ILogger<HomeController> logger ,IProductRepo ProductRepo)
+        public HomeController(ILogger<HomeController> logger, IProductRepo ProductRepo)
         {
             _logger = logger;
             _ProductRepo = ProductRepo;
@@ -42,18 +42,34 @@ namespace lensLook.Pl.Controllers
         {
             return View();
         }
+        public IActionResult aboutUS()
+        {
+            return View();
+        }
+
+
+
         public IActionResult OurDoctors()
         {
             return View();
-        }    
+        }
+        public IActionResult Appointment()
+        {
+            return View();
+        }   
         
-        
+        public IActionResult Services()
+        {
+            return View();
+        }
+
+
         public IActionResult Reviews()
         {
             return View();
         }
 
-        public IActionResult store ()
+        public IActionResult store()
         {
             ViewBag.AllProducts = _ProductRepo.GetAllProduct() as IEnumerable<Product>;
 

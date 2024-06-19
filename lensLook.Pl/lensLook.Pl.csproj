@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\Appointment.cshtml" />
     <Content Remove="Views\PartialView\_CheckIfAuthOrNot.cshtml" />
   </ItemGroup>
 
@@ -20,6 +21,7 @@
 
   <ItemGroup>
     <None Include="Views\Booking\Repair.cshtml" />
+    <None Include="Views\Home\Appointment.cshtml" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />

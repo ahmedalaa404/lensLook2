@@ -18,6 +18,7 @@
 }
 
 <link rel="stylesheet" href="~/css/services.css" />
+<link rel="stylesheet" href="~/css/appointment.css" />
 
 
 <!-- fist section -->
@@ -157,9 +158,9 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <a href="make repair.html">
-                    <button type="button" class="btn main-btn">
+                    <a type="button" class="btn main-btn" asp-action="repaire" asp-controller="booking">
                         Book a repair
-                    </button>
+                    </a>
                 </a>
             </div>
         </div>
@@ -187,7 +188,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
                     eveniet accusamus iure consequuntur nulla
                 </p>
-                <a href="home appointment.html" class="btn main-btn-home">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                <a asp-action="offline" asp-controller="booking" class="btn main-btn-home">Book Now <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="card-number1 position-absolute d-flex justify-content-center align-items-center">
                 <span>01</span>
@@ -204,7 +205,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
                     eveniet accusamus iure consequuntur nulla
                 </p>
-                <a href="online appointment.html" class="btn main-btn-home mt-4">
+                <a asp-action="online" asp-controller="booking" class="btn main-btn-home mt-4">
                     Book Now <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>

@@ -64,7 +64,7 @@ namespace lensLook.Bll.Services
 
         public Booking GetById(int Id)
         {
-          return  _Context.Bookings.FirstOrDefault(x=>Id==Id);
+          return  _Context.Bookings.FirstOrDefault(x=> x.BookingId== Id);
         }
 
         public List<Dal.Models.Booking> GetServicesByUser(string IdUser)
@@ -74,9 +74,19 @@ namespace lensLook.Bll.Services
 
         public bool Update(Booking model)
         {
-            _Context.Update(model);
-            _Context.SaveChanges();
+            try
+            {
+                var res = _Context.Bookings.Update(model);
+                var res2 = _Context.SaveChanges();
             return true;
+            }
+            catch (Exception)
+            {
+                return false;
+
+                throw;
+            }
+
         }
 
 
