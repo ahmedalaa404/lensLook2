@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace lensLook.Dal.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangeServices : Migration
+    public partial class InitCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,41 +26,16 @@ namespace lensLook.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "BasketCustomers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Experience = table.Column<int>(type: "int", nullable: true),
-                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumberOfAppointments = table.Column<int>(type: "int", nullable: true),
-                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    MedicalLicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HomeAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_BasketCustomers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,7 +73,6 @@ namespace lensLook.Dal.Migrations
                     Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -136,6 +110,104 @@ namespace lensLook.Dal.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Experience = table.Column<int>(type: "int", nullable: true),
+                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumberOfAppointments = table.Column<int>(type: "int", nullable: true),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    MedicalLicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HomeAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BasketCustomersId = table.Column<int>(type: "int", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_BasketCustomers_BasketCustomersId",
+                        column: x => x.BasketCustomersId,
+                        principalTable: "BasketCustomers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Product_ProductId = table.Column<int>(type: "int", nullable: false),
+                    Product_ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Product_ProductPictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BasketItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Productid = table.Column<int>(type: "int", nullable: false),
+                    CustomerBasketId = table.Column<int>(type: "int", nullable: false),
+                    BasketCustomerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_BasketCustomers_BasketCustomerId",
+                        column: x => x.BasketCustomerId,
+                        principalTable: "BasketCustomers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Products_Productid",
+                        column: x => x.Productid,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -226,48 +298,6 @@ namespace lensLook.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BasketCustomers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BasketCustomers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BasketCustomers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Product_ProductId = table.Column<int>(type: "int", nullable: false),
-                    Product_ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Product_ProductPictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Order_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Order",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
@@ -278,10 +308,10 @@ namespace lensLook.Dal.Migrations
                     DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HomeAddres = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppointmentTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -313,37 +343,6 @@ namespace lensLook.Dal.Migrations
                         name: "FK_Bookings_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BasketItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Productid = table.Column<int>(type: "int", nullable: false),
-                    CustomerBasketId = table.Column<int>(type: "int", nullable: false),
-                    BasketCustomerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BasketItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BasketItems_BasketCustomers_BasketCustomerId",
-                        column: x => x.BasketCustomerId,
-                        principalTable: "BasketCustomers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BasketItems_Products_Productid",
-                        column: x => x.Productid,
-                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -381,17 +380,18 @@ namespace lensLook.Dal.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_BasketCustomersId",
+                table: "AspNetUsers",
+                column: "BasketCustomersId",
+                unique: true,
+                filter: "[BasketCustomersId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BasketCustomers_UserId",
-                table: "BasketCustomers",
-                column: "UserId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_BasketItems_BasketCustomerId",
@@ -460,10 +460,10 @@ namespace lensLook.Dal.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "BasketCustomers");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Services");
@@ -472,7 +472,7 @@ namespace lensLook.Dal.Migrations
                 name: "Order");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "BasketCustomers");
         }
     }
 }

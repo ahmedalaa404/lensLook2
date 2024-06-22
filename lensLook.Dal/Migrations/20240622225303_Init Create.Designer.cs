@@ -12,8 +12,8 @@ using lensLook.Dal.Context;
 namespace lensLook.Dal.Migrations
 {
     [DbContext(typeof(LensLookDbContext))]
-    [Migration("20240618032442_remove Image From Products")]
-    partial class removeImageFromProducts
+    [Migration("20240622225303_Init Create")]
+    partial class InitCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

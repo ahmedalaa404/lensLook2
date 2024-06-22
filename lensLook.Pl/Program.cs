@@ -96,7 +96,7 @@ namespace lensLook.Pl
                 var Manager = Services.GetRequiredService<UserManager<user>>();
                 var RoleManager = Services.GetRequiredService<RoleManager<IdentityRole>>();
                 var Context = Services.GetRequiredService<LensLookDbContext>();
-
+                Context.Database.Migrate();
 
                 await SeedData.Seed(Manager, RoleManager, Context);
             }

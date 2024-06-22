@@ -36,6 +36,8 @@ namespace lensLook.Pl
                         Email = "test@mail.com",
                         UserName = "HambozoCom",
                         DisplayName = "Hambozo11",
+                        DateOfBirth= DateTime.Now,
+                        IsActive = true,
                         RoleName= "Admin"
                     };
                     var resulte = await _userManager.CreateAsync(model, "Hambozo123@@##");
@@ -43,7 +45,7 @@ namespace lensLook.Pl
                     if (resulte.Succeeded)
                     {
                         var RoleName = _RoleManager.Roles.Where(x => x.Name == "Admin").FirstOrDefault();
-                        _userManager.AddToRoleAsync(model, RoleName.ToString());
+                       await _userManager.AddToRoleAsync(model, RoleName.Name.ToString());
                         var basketCustomer = new BasketCustomer
                         {
                             UserId = model.Id // Set the UserId property
@@ -53,7 +55,7 @@ namespace lensLook.Pl
                         // Add the basketCustomer to the user's basket
                         model.BasketCustomers = basketCustomer;
                         _context.BasketCustomers.Add(basketCustomer);
-                        await _context.SaveChangesAsync();
+                        _context.SaveChanges();
                     }
                 }
                 catch (Exception x)
@@ -62,7 +64,6 @@ namespace lensLook.Pl
 
                     throw;
                 }
-
 
 
 
@@ -83,7 +84,7 @@ namespace lensLook.Pl
                     if (resulte.Succeeded)
                     {
                         var RoleName = _RoleManager.Roles.Where(x => x.Name == "Patient").FirstOrDefault();
-                        _userManager.AddToRoleAsync(model, RoleName.ToString());
+                        await _userManager.AddToRoleAsync(model, RoleName.Name.ToString());
                         var basketCustomer = new BasketCustomer
                         {
                             UserId = model.Id // Set the UserId property
@@ -130,7 +131,7 @@ namespace lensLook.Pl
                     if (resulte.Succeeded)
                     {
                         var RoleName = _RoleManager.Roles.Where(x => x.Name == "Doctor").FirstOrDefault();
-                        _userManager.AddToRoleAsync(model, RoleName.ToString());
+                       await _userManager.AddToRoleAsync(model, RoleName.Name.ToString());
                         var basketCustomer = new BasketCustomer
                         {
                             UserId = model.Id // Set the UserId property
@@ -180,6 +181,23 @@ namespace lensLook.Pl
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
 
@@ -193,7 +211,7 @@ namespace lensLook.Pl
 
 
 
-            if(!_context.Services.Any())
+            if (!_context.Services.Any())
             {
                 List<Services> x = new List<Services> { };
                 foreach (var item in Enum.GetValues(typeof(BookingType)))

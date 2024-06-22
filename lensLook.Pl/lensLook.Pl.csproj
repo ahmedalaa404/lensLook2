@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Admin\Views\Account\RegisterNewDoctor.cshtml" />
+    <Content Remove="Areas\Admin\Views\Account\RegisterNewPatient.cshtml" />
     <Content Remove="Views\Home\Appointment.cshtml" />
     <Content Remove="Views\PartialView\_CheckIfAuthOrNot.cshtml" />
   </ItemGroup>
@@ -20,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\Account\RegisterNewDoctor.cshtml" />
+    <None Include="Areas\Admin\Views\Account\RegisterNewPatient.cshtml" />
     <None Include="Views\Booking\Repair.cshtml" />
     <None Include="Views\Home\Appointment.cshtml" />
     <None Include="wwwroot\dashboard\css\adminlte.css.map" />
