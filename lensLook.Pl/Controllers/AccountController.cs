@@ -383,6 +383,7 @@ namespace lensLook.Pl.Controllers
                 {
                     var RolenName= roleManager.Roles.FirstOrDefault(x=>x.Name== "Doctor");
                     context.BasketCustomers.Add(new BasketCustomer() { UserId = User.Id });
+                    context.SaveChanges();
                     await  _usermanager.AddToRoleAsync(User, RolenName.ToString());
                     return RedirectToAction(nameof(Login));
                 }
