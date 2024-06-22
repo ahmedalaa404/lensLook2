@@ -17,6 +17,7 @@
     padding: 0px;
 }
 
+
 body {
     font-family: "Roboto", sans-serif;
     position: relative;
@@ -69,6 +70,7 @@ body {
     font-weight: bold;
     border: none;
 }
+
 
     .main-btn:hover {
         color: var(--mywhite);
@@ -326,6 +328,7 @@ body {
     }
 }
 
+
 #about {
     font-size: 30px;
     animation: bot 0.5s ease-in-out forwards;
@@ -395,6 +398,10 @@ body {
         opacity: 0.7;
         transform: scaleY(1); /* Now animates scaleY for top-down effect */
     }
+
+.homeleft, homeright {
+    max-height:300px;
+}
 
 .card-icon {
     transition: transform 0.3s ease-in-out;

@@ -18,14 +18,28 @@
    <style>
        @@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+        :root {
+            --myblue: #033373;
+            --mylight: #17b8da;
+            --mywhite: white;
+            --mylightblue: #03347310;
+            --mydoctorblue: #03347377;
+            --transition: 0.3s ease-in-out;
+            --animation: left_right 2s ease-in-out;
+            --bottom_up: bottomUp 2s ease-in-out forwards;
+            --left_right: left_right 2s ease-in-out forwards;
+            --my_shadow: 0px 0px 15px -5px var(--myblue);
+        }
+
+        
 * {
-    font-family: 'Montserrat', sans-serif;
     outline: 0;
     transition: .3s;
 }
 
 
 h2 {
+    color:var(--myblue);
     font-weight: bolder;
     text-align: center;
 }
@@ -38,7 +52,7 @@ h2 {
     width: 10em;
     padding: 1em 1em;
     margin: 0.5em;
-    background: #7762ff;
+    background: var(--mylight);
     color: white;
     transition: background .5s;
     border-radius: 4px; 
@@ -53,13 +67,13 @@ h2 {
     padding: 1em 1em;
     margin: 0.5em;
     background: white;
-    color: #7762ff;
+    color: var(--mylight);
     transition: background .5s;
     border-radius: 4px; 
 }
 
 .cart-button-style:hover, #checkout:hover, #apply-promo:hover, .keep-shopping:hover {
-    background: #62ff8e;
+    background: var(--mylight);
     color: white;
 }
 
@@ -73,8 +87,19 @@ h2 {
     width: 23%;
     margin: 3% 1%;
     text-align: center;
-    padding: 0 0 1% 0;
+    padding:20px;
+    background-color:var(--mylightblue);
+    border-radius:8px;
+    transition: transform 0.3s ease,  0.3s ease;
+    box-shadow : 0px 10px 10px -10px var(--myblue);
 }
+
+.products:hover{
+    transform: translateY(-10px);
+    box-shadow:var(--my_shadow);
+    
+}
+
 
 .products img {
     width: 100%;
@@ -104,6 +129,7 @@ h2 {
 @@media screen and (max-width: 600px) {
     .products {
         width: 100%;
+        background-color:var(--mydoctorblue);
     }
     
     #shop {
@@ -123,18 +149,18 @@ h2 {
     border-style: none;
     width: 10em;
     height: 3em;
-    background: #62ff8e;
+    background: var(--mylight);
     color: white;
     font-weight: bold;
     border-radius: 20px;
 }
 
 .add-to-cart:hover {
-    background: #7762ff;
+    background: var(--mylight);
 }
 
 .add-to-cart:active {
-    background: #62ff8e;
+    background: var(--mylight);
 }
 
 .slider {
@@ -207,18 +233,18 @@ h2 {
     padding: 2% 12px;
     width: 100%;
     height: 30px;
-    background: #56ff6a;
+    background: var(--myblue);
     color: white;
     border-radius: 10px;
 }
 
 #update:hover {
     background: #f0ffe6;
-    color: #56ff6a;
+    color: var(--myblue);
 }
 
 #update:active {
-    background: #56f46a;
+    background: var(--mylight);
     color: white;
 }
 
@@ -262,7 +288,7 @@ h2 {
     border-style: none;
     width: 10em;
     padding: 1em 1em;
-    background: #7762ff;
+    background: var(--mylight);
     color: white;
     transition: background .5s;
     border-radius: 4px;
@@ -272,7 +298,21 @@ h2 {
         .carousel-item
         {
             height:500px; 
-        }
+        } 
+
+    .storebutton{
+            background-color: #033373;
+            padding: 10px;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            border: none;
+    }
+
+    .storebutton:hover{
+        background-color: var(--mylight);
+        color:var(--mywhite);
+    }
    </style>
 }
 
@@ -360,12 +400,12 @@ h2 {
     {
 
 
-            <div class="products ios apple">
-                <img class="product-image" src="@item.PictureUrl">
-                <p class="product-name">@item.Name</p>
-                <p class="product-description">A 5.5" beast of processing power from Apple.</p>
-                <p class="product-price" value='999'>999</p>
-                <a class="btn btn-primary" asp-action="AddToCart" asp-controller="Basket" class="btn" asp-route-Product="@item.Id" id='test'>ADD TO CART</a>
+            <div class="products ios apple" style="color: #033373">
+                <img class="product-image mb-3" src="@item.PictureUrl">
+                <h5 class="product-name">@item.Name</h5>
+                <p class="product-description" >A 5.5" beast of processing power from Apple.</p>
+                <p class="product-price"  style="color: #17b8da">@item.Price</p>
+                <a class="btn storebutton" asp-action="AddToCart" asp-controller="Basket"  asp-route-Product="@item.Id" id='test' >ADD TO CART</a>
             </div>
             
 

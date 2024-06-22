@@ -12,5 +12,10 @@ namespace lensLook.Bll
 
         List<lensLook.Dal.Models.Booking> GetServicesByUser(string IdUser);
         List<Booking> GetAllForDoctor(string Id);
+
+        int TotalServices();
+
+        int TotalServicesPending();
+        int TotalServicesSuccess();
     }
 }

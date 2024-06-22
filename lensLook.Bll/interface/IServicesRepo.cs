@@ -9,7 +9,7 @@ namespace lensLook.Bll
 
         lensLook.Dal.Models.Services GetById(int id);
         lensLook.Dal.Models.Services GetByName(string id);
-        
+
 
 
 

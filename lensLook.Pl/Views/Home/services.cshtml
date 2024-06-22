@@ -15,9 +15,8 @@
 
 
 }
-<link rel="stylesheet" href="~/css/services.css" />
 
-
+<link rel="stylesheet" href="~/css/services" />
 <section class="landing container-fluid p-0 d-grid position-relative align-items-center">
     <img src="~/photos/services.jpg" alt="About us" class="img-fluid position-absolute" />
     <div class="overlay display-flex align-items-center justify-content-center opacity-50">
@@ -33,8 +32,7 @@
         </div>
         <div class="col-md-6">
             <p class="fs-5">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi est
-                esse omnis, ex voluptatem assumenda
+                We are a website where users can get their eyes tested and buy glasses without leaving their homes.
             </p>
         </div>
     </div>
@@ -46,7 +44,7 @@
                 <p class="card-text mx-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="eye care.html"><button type="button" class="btn main-btn">Read more</button></a>
+                <a asp-controller="Home" asp-action="EyeCare"><button type="button" class="btn main-btn">Read more</button></a>
             </div>
         </div>
         <div class="card rounded my-card-hover">
@@ -56,7 +54,7 @@
                 <p class="card-text mx-4">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <a href="vision check.html">
+                <a asp-controller="Home" asp-action="VisionCheck">
                     <button type="button" class="btn main-btn">
                         Make a check
                     </button>
@@ -71,7 +69,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <a href="make repair.html">
-                    <a type="button" asp-action="repaire" asp-controller="booking" class="btn main-btn">
+                    <a type="button" asp-controller="booking" asp-action="Repair" class="btn main-btn">
                         Book a repair
                     </a>
                 </a>
@@ -79,6 +77,3 @@
         </div>
     </div>
 </div>
-
-
-            @* <link href="~/js/s"/> *@

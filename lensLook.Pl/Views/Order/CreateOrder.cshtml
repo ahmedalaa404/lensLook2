@@ -16,6 +16,7 @@ main {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
+  color: #033373;
 }
 @@media screen and (min-width: 1060px) {
   main {
@@ -112,7 +113,6 @@ main {
 }
 .checkout form .input-group button {
   grid-column: 2;
-  background: #121212;
   color: #FFF;
   padding: 1rem;
   border: 0;
@@ -122,6 +122,11 @@ main {
 .checkout form .input-group button:hover {
   transform: translatey(-1px);
 }
+
+    ::placeholder {
+        color: #03347377; 
+        opacity: 1; 
+    }
 
 </style>
 
@@ -147,7 +152,7 @@ main {
 
         @foreach (var item in Model.Items)
         {
-            <div class="cart-item my-2">
+            <div class="cart-item my-2" style="color:#17b8da">
                 <img src="@item.Product.ProductPictureUrl" width="30%">
                 <p class="title">@item.Product.ProductName<span>@item.Quantity</span></p>
                 <p class="currency">LE:</p>
@@ -159,12 +164,12 @@ main {
 
 
 
-        <div class="shipping">
+        <div class="shipping" style="color:#17b8da">
             <p class="title">Shipping</p>
             <p class="currency">LE:-</p>
             <p class="price">10</p>
         </div>
-        <div class="total">
+        <div class="total" >
             <p class="title">Total</p>
             <p class="currency">LE:</p>
             <p class="price">@(@Model.SubTotal+10)</p>
@@ -173,7 +178,7 @@ main {
     <section class="checkout">
         <header>
             <h1>Checkout</h1>
-            <p>by Credit Card</p>
+            <p style="color:#17b8da">by Cash</p>
         </header>
         <form asp-action="CreateOrder" asp-controller="Order" method="post">
             <div class="input-group">
@@ -208,7 +213,7 @@ main {
 
 
             <div class="input-group">
-            <button>Create Order</button>
+            <button class="main-btn">Create Order</button>
             </div>
 
 

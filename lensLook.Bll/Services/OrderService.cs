@@ -76,5 +76,10 @@ namespace lensLook.Bll.Services
                 return false;
             }
         }
+
+        public int TotalOrders()
+        {
+            return _context.Order.Count();
+        }
     }
 }

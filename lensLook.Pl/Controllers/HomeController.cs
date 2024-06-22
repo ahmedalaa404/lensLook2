@@ -22,6 +22,16 @@ namespace lensLook.Pl.Controllers
             return View();
         }
 
+        public IActionResult VisionCheck()
+        {
+            return View();
+        }
+
+        public IActionResult EyeCare()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

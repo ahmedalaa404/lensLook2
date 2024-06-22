@@ -136,6 +136,10 @@ namespace lensLook.Pl.Controllers
                         var Resulate = await _signManager.PasswordSignInAsync(User, UserLogin.Password, UserLogin.RememberMe, false);
                         if (Resulate.Succeeded)
                         {
+                            if(User.RoleName=="Admin")
+                            {
+                                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                            }
                             return RedirectToAction("Index", "home");
                         }
                     }

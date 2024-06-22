@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lensLook.Pl", "lensLook.Pl\lensLook.Pl.csproj", "{6997B1AD-D126-4E42-BC98-8525C6C5330D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lensLook.Pl", "lensLook.Pl\lensLook.Pl.csproj", "{6997B1AD-D126-4E42-BC98-8525C6C5330D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lensLook.Bll", "lensLook.Bll\lensLook.Bll.csproj", "{72E09C4F-AED9-4DF1-BEEF-91A2FAB3A71C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lensLook.Bll", "lensLook.Bll\lensLook.Bll.csproj", "{72E09C4F-AED9-4DF1-BEEF-91A2FAB3A71C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lensLook.Dal", "lensLook.Dal\lensLook.Dal.csproj", "{90E5FE0B-BEFA-47A0-A522-A58674A875E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lensLook.Dal", "lensLook.Dal\lensLook.Dal.csproj", "{90E5FE0B-BEFA-47A0-A522-A58674A875E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

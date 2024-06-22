@@ -10,5 +10,8 @@ namespace lensLook.Dal
 
         public bool RemoveOrder(int x);
         Order GetOrderById(int OrderId);
+
+
+        int TotalOrders();
     }
 }

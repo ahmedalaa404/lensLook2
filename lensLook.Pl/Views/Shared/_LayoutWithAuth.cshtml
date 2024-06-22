@@ -102,20 +102,20 @@
                     </li>
                 </ul>
 
-
+               
                 <div class="d-flex justify-context-center">
 
                     <div class="px-3">
-                        <a type="button" class="btn btn-primary position-relative" asp-action="Cart" asp-controller="Basket">
+                        <a type="button" class="btn main-btn position-relative" asp-action="Cart" asp-controller="Basket">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill " style="background-color: #17b8da; color:#fff">
                                 <span> @BasketRepo.GetCountBasketItems(userId)</span>
                             </span>
                         </a>
                     </div>
 
                     <div>
-                        <a asp-action="SignOut" asp-controller="account" class="btn btn-danger">
+                        <a asp-action="SignOut" asp-controller="account" class="btn fs-5 logout" style="background-color:#17b8da; color:#fff">
                             logout
                             <i class="fa-solid fa-right-from-bracket fa-lg"></i>
 
@@ -166,8 +166,7 @@
                 <div class="col ms-5">
                     <img src="~/photos/white logo.png" alt="Company Logo" class="img-fluid mb-3" />
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla sapien, aliquam euismod
-                        magna vel, egestas faucibus quam.
+                        Pioneering a paradigm shift in eye care, by creating a world where personalized and advanced eye health solutions are at everyone's doorstep.
                     </p>
                     <div class="d-flex justify-content-center icons">
                         <a href="#"><i class="fa-brands fa-facebook me-4 fs-1"></i></a>
@@ -182,11 +181,9 @@
                     <ul style="list-style: none">
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="index">About Us</a></li>
-                        <li>
-                            <a class="nav-link p-2 p-lg-3" asp-controller="Home" asp-action="Index">Services</a>
-                        </li>
-                        <li><a href="store.html">Store</a></li>
-                        <li><a  >Appointment</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Services</a></li>
+                        <li><a asp-controller="Home" asp-action="Store">Store</a></li>
+                        <li><a asp-controller="Home" asp-action="Appointment">Appointment</a></li>
                     </ul>
                 </div>
                 <div class="col text-center column-gap-2">

@@ -90,5 +90,35 @@ namespace lensLook.Bll.Services
         }
 
 
+
+
+
+
+
+
+
+
+        public int TotalServices()
+        {
+       return     _Context.Bookings.Count();
+        }
+         
+        public int TotalServicesPending(){
+        return _Context.Bookings.Where(x=>x.Status==BookingStatus.Pending).Count();
+        }
+        public int TotalServicesSuccess() {
+
+            return _Context.Bookings.Where(x => x.Status == BookingStatus.Accepted).Count();
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
