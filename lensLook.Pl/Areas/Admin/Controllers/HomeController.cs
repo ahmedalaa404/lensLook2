@@ -1,12 +1,14 @@
 ﻿using lensLook.Bll;
 using lensLook.Dal;
 using lensLook.Dal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lensLook.Pl.Areas.Admin.Controllers
 {
-    [Area("admin")]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         private readonly UserManager<user> _usermanager;

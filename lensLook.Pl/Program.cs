@@ -29,7 +29,6 @@ namespace lensLook.Pl
             });
             //builder.Services.AddScoped<IDepartmentsRepo, DepartmentsRepo>();
 
-            builder.Services.AddScoped<IProductRepo,ProductRepo>();
 
 
 
@@ -40,6 +39,7 @@ namespace lensLook.Pl
 
             builder.Services.AddTransient<IEmailSettings, EmailSettings>();
 
+            builder.Services.AddScoped<IProductRepo, ProductRepo>();
 
             builder.Services.AddScoped<IBasketRepo, BasketRepo>();
             builder.Services.AddScoped<IOrderService, OrderService>();

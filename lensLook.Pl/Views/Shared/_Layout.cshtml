@@ -88,15 +88,15 @@
 
                 <div>
 
-                    <a class="btn main-btn" id="show-login" data-bs-toggle="modal" data-bs-target="#loginPopup">
+                    <a class="btn main-btn" id="show-login" asp-controller="Account" asp-action="Login">
                         Login
                     </a>
 
 
 
-                    <button class="btn main-btn" data-bs-toggle="modal" data-bs-target="#registrationPopup">
+                    <a class="btn main-btn" asp-controller="Account" asp-action="Register">
                         Sign Up
-                    </button>
+                    </a>
                 </div>
 
 
@@ -115,52 +115,7 @@
 
 
 
-    <!-- Login form -->
-    <div class="modal fade" id="loginPopup" tabindex="-1" aria-labelledby="loginPopupLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="loginPopupLabel">Login</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                
-                        <form asp-action="RegisterOrLogin" class="login_form" method="post" asp-controller="Account">
-                        <div class="mb-3">
-                            <label for="log_username" class="form-label fw-bold">Username</label>
-                            <input type="text" class="form-control" id="log_username" aria-describedby="usernameHelp"
-                                   placeholder="Enter your username" asp-for="@Model.ModelLogin.Email"  required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="log_password" class="form-label fw-bold">
-                                Password
-                            </label>
-                            <input type="password" asp-for="@Model.ModelLogin.Password" class="form-control" id="log_password" placeholder="Enter your password"
-                                   required />
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe"  asp-for="@Model.ModelLogin.RememberMe"/>
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
-
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3">
-                            Login
-                        </button>
-                        <a href="#" class="text-decoration-none" id="forgotPasswordLink" data-bs-toggle="modal" data-bs-target="#forgotPasswordPopup">
-                            Forgot
-                            Password?
-                        </a>
-                        @* <br /> *@
-                        <a style="display:block;" href="#" class="text-decoration-none" id="SignUpLink" data-bs-toggle="modal" data-bs-target="#registrationPopup">
-                            Don`t have account?
-                        </a>
-                        <hr />
-                       
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
 
@@ -192,65 +147,7 @@
     </div>
 
 
-    <!-- sign Up form -->
-    <div class="modal fade" id="registrationPopup" tabindex="-1" aria-labelledby="registrationPopupLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="registrationPopupLabel">Sign Up</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="registrationForm" class="registration_form" asp-action="RegisterOrLogin" method="post" asp-controller="Account">
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.FirstName" class="form-label fw-bold">First Name</label>
-                            <input asp-for="ModelRegister.FirstName" class="form-control" placeholder="Enter your first name" required />
-                            <span asp-validation-for="ModelRegister.FirstName" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.LastName" class="form-label fw-bold">Last Name</label>
-                            <input asp-for="ModelRegister.LastName" class="form-control" placeholder="Enter your last name" required />
-                            <span asp-validation-for="ModelRegister.LastName" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.Email" class="form-label fw-bold">Email</label>
-                            <input asp-for="ModelRegister.Email" class="form-control" placeholder="Enter your email" required />
-                            <span asp-validation-for="ModelRegister.Email" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.DateOfBirth" class="form-label fw-bold">Date of Birth</label>
-                            <input asp-for="ModelRegister.DateOfBirth" class="form-control" required />
-                            <span asp-validation-for="ModelRegister.DateOfBirth" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.Password" class="form-label fw-bold">Password</label>
-                            <input asp-for="ModelRegister.Password" class="form-control" placeholder="Enter your password" required />
-                            <span asp-validation-for="ModelRegister.Password" class="text-danger"></span>
-                            <div class="form-text">Password must be at least 8 characters long, including a combination of uppercase and lowercase letters, numbers, and symbols.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="ModelRegister.ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
-                            <input asp-for="ModelRegister.ConfirmPassword" class="form-control" placeholder="Confirm your password" required />
-                            <span asp-validation-for="ModelRegister.ConfirmPassword" class="text-danger"></span>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input asp-for="ModelRegister.IsActive" class="form-check-input" required />
-                            <label asp-for="ModelRegister.IsActive" class="form-check-label">I agree to the Terms and Conditions</label>
-                            <a href="#">(link to Terms and Conditions)</a>
-                        </div>
-                        <button type="submit" class="btn main-btn ms-0 mb-3" id="show-login"
-                                data-bs-toggle="modal"
-                                data-bs-target="#loginPopup">
-                            Sign Up
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   
 
     <footer class="footer">
         <div class="">

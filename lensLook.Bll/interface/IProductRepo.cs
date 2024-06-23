@@ -6,5 +6,9 @@ namespace lensLook.Dal
     {
         IEnumerable<Product> GetAllProduct();
         Product GetProductById(int id);
+
+
+        bool Create(Product Model);
+        bool Delete(int Model);
     }
 }

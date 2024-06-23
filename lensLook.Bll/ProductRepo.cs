@@ -12,6 +12,42 @@ namespace lensLook.Bll
         {
             _context = context;
         }
+
+        public bool Create(Product Model)
+        {
+            try
+            {
+                _context.Products.Add(Model);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+                
+            }
+        }
+
+        public bool Delete(int Model)
+        {
+            try
+            {
+                var Product = GetProductById(Model);
+                _context.Remove(Product);
+                _context.SaveChanges();
+                return true;
+            }
+
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        
+
+        }
+
         public IEnumerable<Product> GetAllProduct()
         {
             return _context.Products.ToList();

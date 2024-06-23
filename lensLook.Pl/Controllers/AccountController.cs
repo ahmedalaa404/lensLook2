@@ -36,52 +36,39 @@ namespace lensLook.Pl.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterOrLogin(ModelLoginAndRegister Model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (Model.ModelLogin != null)
                 {
-                   await Login(Model.ModelLogin);
+                    await Login(Model.ModelLogin);
                 }
                 else if (Model.ForgetPassword != null)
                 {
-                await    SendEmail(Model.ForgetPassword);
-                }
-                else
-                {
-                    await Register(Model.ModelRegister);
+                    await SendEmail(Model.ForgetPassword);
                 }
             }
             return RedirectToAction("Index", "Home");
         }
 
-
-
-
-
-
-
-
-
-
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterVM Model)
+        public async Task<IActionResult> Register(ModelLoginAndRegister Model)
         {
             if (ModelState.IsValid)
             {
                 var User = new user()
                 {
-                    FirstName = Model.FirstName,
-                    LastName = Model.LastName,
-                    UserName = Model.Email.Split("@")[0],
-                    Email = Model.Email.Trim().ToLower(),
-                    IsActive = Model.IsActive,
-                    DisplayName=Model.FirstName + Model.LastName,
-                    PhoneNumber = string.Concat("+2", Model.PhoneNumber),
-                    DateOfBirth=Model.DateOfBirth,
-                    RoleName= "Patient",
+                    FirstName = Model.ModelRegister.FirstName,
+                    LastName = Model.ModelRegister.LastName,
+                    UserName = Model.ModelRegister.Email.Split("@")[0],
+                    Email = Model.ModelRegister.Email.Trim().ToLower(),
+                    IsActive = Model.ModelRegister.IsActive,
+                    DisplayName = Model.ModelRegister.FirstName + Model.ModelRegister.LastName,
+                    PhoneNumber = string.Concat("+2", Model.ModelRegister.PhoneNumber),
+                    DateOfBirth = Model.ModelRegister.DateOfBirth,
+                    RoleName = "Patient",
                 };
 
-                var Resulate = await _usermanager.CreateAsync(User, Model.Password);
+                var Resulate = await _usermanager.CreateAsync(User, Model.ModelRegister.Password);
 
                 if (Resulate.Succeeded)
                 {

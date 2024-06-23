@@ -54,7 +54,7 @@ namespace lensLook.Bll.Services
 
         public List<Booking> GetAll()
         {
-            return _Context.Bookings.ToList();
+            return _Context.Bookings.OrderBy(x=>x.RequestDate).ToList();
         }
 
         public List<Booking> GetAllForDoctor(string Id)
@@ -111,14 +111,22 @@ namespace lensLook.Bll.Services
             return _Context.Bookings.Where(x => x.Status == BookingStatus.Accepted).Count();
         }
 
+        public bool Delete(int ModelBookingId)
+        {
+            try
+            {
+                var Booking = _Context.Bookings.FirstOrDefault(x => x.BookingId == ModelBookingId);
+                _Context.Bookings.Remove(Booking);
+                _Context.SaveChanges(true);
+                return true;
+            }
+            catch (Exception)
+            {
 
-
-
-
-
-
-
-
-
+                return false;
+                throw;
+            }
+            
+         }
     }
 }

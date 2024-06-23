@@ -16,7 +16,7 @@ using lensLook.Dal.Context;
 namespace lensLook.Pl.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private readonly LensLookDbContext context;

@@ -17,5 +17,11 @@ namespace lensLook.Bll
 
         int TotalServicesPending();
         int TotalServicesSuccess();
+
+
+
+        bool Delete(int ModelBookingId);
+
+
     }
 }
